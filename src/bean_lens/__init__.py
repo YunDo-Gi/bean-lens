@@ -1,4 +1,4 @@
-"""bean-lens: Extract structured coffee bean info from package images."""
+"""bean-lens: Extract structured coffee bean info from package or card images."""
 
 from bean_lens.core import extract
 from bean_lens.schema import BeanInfo, Origin

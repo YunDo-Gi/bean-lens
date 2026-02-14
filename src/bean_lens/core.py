@@ -11,7 +11,7 @@ ImageInput = str | Path | Image.Image
 
 
 def extract(image: ImageInput, *, api_key: str | None = None) -> BeanInfo:
-    """Extract coffee bean information from a package image.
+    """Extract coffee bean information from a package or card image.
 
     Args:
         image: Image input - file path (str), Path object, or PIL Image

@@ -12,9 +12,9 @@ def main() -> int:
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
         prog="bean-lens",
-        description="Extract coffee bean info from package images",
+        description="Extract coffee bean info from package or card images",
     )
-    parser.add_argument("image", help="Path to coffee package image")
+    parser.add_argument("image", help="Path to coffee package or card image")
     parser.add_argument(
         "--json",
         action="store_true",

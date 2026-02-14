@@ -1,7 +1,7 @@
 [project]
 name = "bean-lens"
 version = "0.1.0"
-description = "Extract structured coffee bean info from package images using Vision LLM"
+description = "Extract structured coffee bean info from package or card images using Vision LLM"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [

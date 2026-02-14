@@ -11,7 +11,7 @@ from bean_lens.exceptions import AuthenticationError, ImageError, RateLimitError
 from bean_lens.providers.base import BaseProvider, ImageInput
 from bean_lens.schema import BeanInfo
 
-EXTRACTION_PROMPT = """Analyze this coffee bean package image and extract the following information.
+EXTRACTION_PROMPT = """Analyze this coffee bean package or card image and extract the following information.
 Return a JSON object with these fields (use null for missing information):
 
 {
