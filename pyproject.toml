@@ -1,0 +1,46 @@
+[project]
+name = "bean-lens"
+version = "0.1.0"
+description = "Extract structured coffee bean info from package images using Vision LLM"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Yuncheol Kwak", email = "89392516+YunDo-Gi@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+keywords = ["coffee", "ocr", "vision", "llm", "bean", "gemini"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "google-genai>=1.0.0",
+    "pydantic>=2.10.0",
+    "Pillow>=11.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.14.0",
+    "ruff>=0.9.0",
+]
+
+[project.scripts]
+bean-lens = "bean_lens.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/YunDo-Gi/bean-lens"
+Repository = "https://github.com/YunDo-Gi/bean-lens"
+Issues = "https://github.com/YunDo-Gi/bean-lens/issues"
+
+[build-system]
+requires = ["uv_build>=0.10.0,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
