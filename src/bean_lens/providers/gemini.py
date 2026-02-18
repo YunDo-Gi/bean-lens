@@ -3,7 +3,10 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 from google import genai
+
+load_dotenv()
 from google.genai import types
 from PIL import Image
 
