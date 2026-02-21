@@ -134,8 +134,8 @@ def test_low_confidence_match_writes_unknown_queue(tmp_path):
 def test_unmapped_sends_webhook(monkeypatch):
     captured: list[tuple[str, dict, float]] = []
 
-    def fake_send(url: str, payload: dict, *, timeout_sec: float) -> None:
-        captured.append((url, payload, timeout_sec))
+    def fake_send(url: str, payload: dict, *, timeout_sec: float, token: str | None) -> None:
+        captured.append((url, payload, timeout_sec, token))
 
     monkeypatch.setattr(engine_module, "_send_unknown_webhook", fake_send)
 
@@ -143,13 +143,15 @@ def test_unmapped_sends_webhook(monkeypatch):
         config=NormalizationConfig(
             unknown_queue_webhook_url="https://example.com/hook",
             unknown_queue_webhook_timeout_sec=1.2,
+            unknown_queue_webhook_token="secret-token",
         )
     )
     engine.normalize_one("process", "Mystery Process")
 
     assert len(captured) == 1
-    url, payload, timeout_sec = captured[0]
+    url, payload, timeout_sec, token = captured[0]
     assert url == "https://example.com/hook"
     assert timeout_sec == 1.2
+    assert token == "secret-token"
     assert payload["domain"] == "process"
     assert payload["reason"] == "no_dictionary_match"

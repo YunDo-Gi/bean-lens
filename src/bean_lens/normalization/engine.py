@@ -35,6 +35,7 @@ class NormalizationConfig:
     unknown_min_confidence: float | None = None
     unknown_queue_webhook_url: str | None = None
     unknown_queue_webhook_timeout_sec: float = 2.0
+    unknown_queue_webhook_token: str | None = None
 
 
 class NormalizationEngine:
@@ -279,6 +280,7 @@ class NormalizationEngine:
                 webhook_url,
                 payload,
                 timeout_sec=self.config.unknown_queue_webhook_timeout_sec,
+                token=self.config.unknown_queue_webhook_token,
             )
 
 
@@ -291,6 +293,7 @@ def normalize_bean_info(
     unknown_min_confidence: float | None = None,
     unknown_queue_webhook_url: str | None = None,
     unknown_queue_webhook_timeout_sec: float = 2.0,
+    unknown_queue_webhook_token: str | None = None,
 ) -> NormalizedBeanInfo:
     """Normalize extracted BeanInfo using dictionary-based rules."""
 
@@ -302,17 +305,27 @@ def normalize_bean_info(
             unknown_min_confidence=unknown_min_confidence,
             unknown_queue_webhook_url=unknown_queue_webhook_url,
             unknown_queue_webhook_timeout_sec=unknown_queue_webhook_timeout_sec,
+            unknown_queue_webhook_token=unknown_queue_webhook_token,
         )
     )
     return engine.normalize_bean_info(bean)
 
 
-def _send_unknown_webhook(url: str, payload: dict, *, timeout_sec: float) -> None:
+def _send_unknown_webhook(
+    url: str,
+    payload: dict,
+    *,
+    timeout_sec: float,
+    token: str | None,
+) -> None:
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    headers = {"Content-Type": "application/json"}
+    if token:
+        headers["x-webhook-token"] = token
     req = request.Request(
         url,
         data=data,
-        headers={"Content-Type": "application/json"},
+        headers=headers,
         method="POST",
     )
     try:

@@ -28,6 +28,7 @@ ALLOWED_MIME_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
 DICTIONARY_VERSION = os.getenv("DICTIONARY_VERSION", "v1")
 UNKNOWN_QUEUE_PATH = os.getenv("UNKNOWN_QUEUE_PATH")
 UNKNOWN_QUEUE_WEBHOOK_URL = os.getenv("UNKNOWN_QUEUE_WEBHOOK_URL")
+UNKNOWN_QUEUE_WEBHOOK_TOKEN = os.getenv("UNKNOWN_QUEUE_WEBHOOK_TOKEN")
 unknown_min_confidence_raw = os.getenv("UNKNOWN_QUEUE_MIN_CONFIDENCE")
 unknown_queue_webhook_timeout_raw = os.getenv("UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC")
 try:
@@ -126,6 +127,7 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
             unknown_min_confidence=UNKNOWN_QUEUE_MIN_CONFIDENCE,
             unknown_queue_webhook_url=UNKNOWN_QUEUE_WEBHOOK_URL,
             unknown_queue_webhook_timeout_sec=UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC,
+            unknown_queue_webhook_token=UNKNOWN_QUEUE_WEBHOOK_TOKEN,
         )
         return normalized
     except UnidentifiedImageError as exc:

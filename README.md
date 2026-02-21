@@ -121,6 +121,7 @@ export UNKNOWN_QUEUE_PATH=/tmp/bean-lens-unknown.jsonl
 export UNKNOWN_QUEUE_MIN_CONFIDENCE=0.85
 export UNKNOWN_QUEUE_WEBHOOK_URL=https://your-endpoint.example.com/unknown-queue
 export UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC=2.0
+export UNKNOWN_QUEUE_WEBHOOK_TOKEN=your-shared-token
 ```
 
 3. Run FastAPI locally:
@@ -215,4 +216,31 @@ python scripts/generate_alias_candidates.py \
   --output data/review/alias_candidates.json \
   --min-count 2 \
   --min-score 0.72
+```
+
+### Webhook receiver (DB sink)
+
+This repository includes a minimal receiver server that stores unknown queue
+events in SQLite.
+
+Run receiver:
+
+```bash
+pip install -r receiver_app/requirements.txt
+uvicorn receiver_app.main:app --reload --port 8100
+```
+
+Receiver environment variables:
+
+```bash
+export UNKNOWN_QUEUE_RECEIVER_DB_PATH=./data/unknown_queue_events.db
+export UNKNOWN_QUEUE_RECEIVER_TOKEN=your-shared-token
+```
+
+Then configure bean-lens API:
+
+```bash
+export UNKNOWN_QUEUE_WEBHOOK_URL=http://localhost:8100/unknown-queue
+export UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC=2.0
+export UNKNOWN_QUEUE_WEBHOOK_TOKEN=your-shared-token
 ```
