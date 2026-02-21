@@ -27,6 +27,9 @@ To use Google Vision OCR instead:
 ```bash
 export BEAN_LENS_PROVIDER=ocr
 export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+export GEMINI_API_KEY=your-api-key  # for OCR text -> LLM structuring
+export OCR_TEXT_LLM_ENABLED=true
+export OCR_TEXT_LLM_MODEL=gemini-2.5-flash-lite
 ```
 
 For serverless environments, you can pass credentials as JSON:
@@ -98,7 +101,9 @@ This repository can be deployed as a Python API on Vercel.
 - `POST /extract`: supports both
   - `multipart/form-data` (`image` file field)
   - `application/json` (`imageBase64` string, raw base64 or Data URL)
-  - response: `NormalizedBeanInfo`
+  - response:
+    - `normalized`: `NormalizedBeanInfo`
+    - `metadata.parser`: extraction parser path (`gemini_vision`, `ocr_text_llm`, `heuristic_fallback`, `ocr_heuristic`)
 
 ### Local API run
 

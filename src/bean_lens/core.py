@@ -23,6 +23,15 @@ def _build_ocr_provider() -> BaseProvider:
     return GoogleVisionOCRProvider()
 
 
+def _select_provider(provider: str | None, api_key: str | None) -> BaseProvider:
+    provider_name = (provider or os.getenv("BEAN_LENS_PROVIDER", "gemini")).strip().lower()
+    if provider_name in {"gemini", "vision"}:
+        return _build_gemini_provider(api_key)
+    if provider_name in {"ocr", "google_vision_ocr", "google-vision-ocr"}:
+        return _build_ocr_provider()
+    raise ValueError(f"Unsupported provider: {provider_name}")
+
+
 def extract(
     image: ImageInput,
     *,
@@ -40,13 +49,19 @@ def extract(
     Returns:
         BeanInfo with extracted information. Fields will be None if not found.
     """
-    provider_name = (provider or os.getenv("BEAN_LENS_PROVIDER", "gemini")).strip().lower()
-
-    if provider_name in {"gemini", "vision"}:
-        engine = _build_gemini_provider(api_key)
-    elif provider_name in {"ocr", "google_vision_ocr", "google-vision-ocr"}:
-        engine = _build_ocr_provider()
-    else:
-        raise ValueError(f"Unsupported provider: {provider_name}")
-
+    engine = _select_provider(provider, api_key)
     return engine.extract(image)
+
+
+def extract_with_metadata(
+    image: ImageInput,
+    *,
+    api_key: str | None = None,
+    provider: str | None = None,
+) -> tuple[BeanInfo, dict[str, str]]:
+    """Extract bean info and return provider metadata."""
+
+    engine = _select_provider(provider, api_key)
+    result = engine.extract(image)
+    metadata = engine.get_extraction_metadata() or {}
+    return result, metadata

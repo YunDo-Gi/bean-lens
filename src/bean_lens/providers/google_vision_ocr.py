@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 from io import BytesIO
@@ -41,10 +42,29 @@ _COUNTRY_ALIASES = {
 class GoogleVisionOCRProvider(BaseProvider):
     """Google Vision OCR provider."""
 
-    def __init__(self, client=None):
+    def __init__(
+        self,
+        client=None,
+        *,
+        llm_client=None,
+        llm_enabled: bool | None = None,
+        llm_model: str | None = None,
+    ):
+        self.logger = logging.getLogger(__name__)
+        self._last_parser = "ocr_heuristic"
+        self.llm_model = llm_model or os.getenv("OCR_TEXT_LLM_MODEL", "gemini-2.5-flash-lite")
+        enabled = (
+            llm_enabled
+            if llm_enabled is not None
+            else os.getenv("OCR_TEXT_LLM_ENABLED", "true").strip().lower() != "false"
+        )
+        self.llm_client = llm_client
+        self.llm_enabled = enabled
+
         if client is not None:
             self.client = client
             self._vision = None
+            self._init_llm_client()
             return
 
         try:
@@ -71,6 +91,22 @@ class GoogleVisionOCRProvider(BaseProvider):
                 "Failed to initialize Google Vision client. "
                 "Check GOOGLE_APPLICATION_CREDENTIALS(_JSON) and GCP IAM permissions."
             ) from exc
+        self._init_llm_client()
+
+    def _init_llm_client(self) -> None:
+        if not self.llm_enabled or self.llm_client is not None:
+            return
+
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            self.llm_enabled = False
+            return
+        try:
+            from google import genai  # type: ignore
+
+            self.llm_client = genai.Client(api_key=api_key)
+        except Exception:
+            self.llm_enabled = False
 
     def _load_image(self, image: ImageInput) -> Image.Image:
         if isinstance(image, Image.Image):
@@ -126,6 +162,16 @@ class GoogleVisionOCRProvider(BaseProvider):
                 pil_image.save(buffer, format=fmt)
                 content = buffer.getvalue()
             raw_text = self._extract_text(content)
+            if self.llm_enabled and self.llm_client and raw_text:
+                try:
+                    result = self._extract_structured_with_llm(raw_text)
+                    self._last_parser = "ocr_text_llm"
+                    return result
+                except Exception:
+                    self._last_parser = "heuristic_fallback"
+                    self.logger.exception("ocr text llm parse failed, fallback to heuristic parser")
+            if self._last_parser not in {"ocr_text_llm", "heuristic_fallback"}:
+                self._last_parser = "ocr_heuristic"
             return self._parse_text(raw_text)
         except (AuthenticationError, RateLimitError, ImageError, BeanLensError):
             raise
@@ -163,6 +209,36 @@ class GoogleVisionOCRProvider(BaseProvider):
             flavor_notes=_split_values(flavor_raw),
             altitude=altitude,
         )
+
+    def _extract_structured_with_llm(self, raw_text: str) -> BeanInfo:
+        prompt = f"""You are given OCR text extracted from a coffee bean package.
+Extract structured bean info and return JSON only that matches this schema:
+- roastery: string|null
+- name: string|null
+- origin: object|null with country/region/farm
+- variety: string[]|null
+- process: string|null
+- roast_level: string|null
+- flavor_notes: string[]|null
+- altitude: string|null
+
+Rules:
+- Use only information explicitly present in OCR text.
+- Keep original language if possible.
+- If unsure, return null for that field.
+
+OCR text:
+\"\"\"{raw_text}\"\"\"
+"""
+        response = self.llm_client.models.generate_content(
+            model=self.llm_model,
+            contents=[prompt],
+            config={"response_mime_type": "application/json", "response_schema": BeanInfo},
+        )
+        return BeanInfo.model_validate_json(response.text)
+
+    def get_extraction_metadata(self) -> dict[str, str]:
+        return {"provider": "ocr", "parser": self._last_parser}
 
 
 def _extract_labeled_value(lines: list[str], labels: list[str]) -> str | None:

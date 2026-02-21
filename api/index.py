@@ -16,7 +16,8 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from bean_lens import extract, normalize_bean_info  # noqa: E402
+from bean_lens import normalize_bean_info  # noqa: E402
+from bean_lens.core import extract_with_metadata  # noqa: E402
 from bean_lens.exceptions import AuthenticationError, ImageError, RateLimitError  # noqa: E402
 from bean_lens.normalization.types import NormalizedBeanInfo  # noqa: E402
 
@@ -64,6 +65,16 @@ class ExtractRequest(BaseModel):
     imageBase64: str
 
 
+class ExtractMetadata(BaseModel):
+    provider: str | None = None
+    parser: str | None = None
+
+
+class ExtractResponse(BaseModel):
+    normalized: NormalizedBeanInfo
+    metadata: ExtractMetadata
+
+
 def _validate_payload_size(payload: bytes) -> None:
     if len(payload) > MAX_IMAGE_BYTES:
         raise HTTPException(status_code=413, detail="image too large")
@@ -100,8 +111,8 @@ def _decode_base64_image(image_base64: str) -> bytes:
     return payload
 
 
-@app.post("/extract", response_model=NormalizedBeanInfo)
-async def extract_bean_info(request: Request, image: UploadFile | None = File(default=None)) -> NormalizedBeanInfo:
+@app.post("/extract", response_model=ExtractResponse)
+async def extract_bean_info(request: Request, image: UploadFile | None = File(default=None)) -> ExtractResponse:
     content_type = request.headers.get("content-type", "")
 
     if content_type.startswith("application/json"):
@@ -121,7 +132,7 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
 
     try:
         pil_image = Image.open(BytesIO(payload))
-        extracted = extract(pil_image)
+        extracted, extraction_metadata = extract_with_metadata(pil_image)
         normalized = normalize_bean_info(
             extracted,
             dictionary_version=DICTIONARY_VERSION,
@@ -131,7 +142,13 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
             unknown_queue_webhook_timeout_sec=UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC,
             unknown_queue_webhook_token=UNKNOWN_QUEUE_WEBHOOK_TOKEN,
         )
-        return normalized
+        return ExtractResponse(
+            normalized=normalized,
+            metadata=ExtractMetadata(
+                provider=extraction_metadata.get("provider"),
+                parser=extraction_metadata.get("parser"),
+            ),
+        )
     except UnidentifiedImageError as exc:
         raise HTTPException(status_code=400, detail="invalid image format") from exc
     except AuthenticationError as exc:

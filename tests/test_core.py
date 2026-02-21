@@ -3,6 +3,7 @@
 import pytest
 
 from bean_lens import BeanInfo, Origin, extract
+from bean_lens.core import extract_with_metadata
 from bean_lens.exceptions import AuthenticationError
 
 
@@ -76,3 +77,17 @@ def test_extract_uses_ocr_provider_when_selected(mocker):
 def test_extract_unsupported_provider_raises():
     with pytest.raises(ValueError):
         extract("test_image.jpg", provider="unknown")
+
+
+def test_extract_with_metadata_includes_parser(mocker):
+    mock_provider = mocker.MagicMock()
+    mock_provider.extract.return_value = BeanInfo(roastery="OCR")
+    mock_provider.get_extraction_metadata.return_value = {"provider": "ocr", "parser": "ocr_text_llm"}
+
+    mocker.patch("bean_lens.core._build_ocr_provider", return_value=mock_provider)
+
+    result, metadata = extract_with_metadata("test_image.jpg", provider="ocr")
+
+    assert result.roastery == "OCR"
+    assert metadata["provider"] == "ocr"
+    assert metadata["parser"] == "ocr_text_llm"

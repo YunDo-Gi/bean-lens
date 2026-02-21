@@ -24,3 +24,7 @@ class BaseProvider(ABC):
             BeanInfo with extracted information
         """
         pass
+
+    def get_extraction_metadata(self) -> dict[str, str]:
+        """Return provider-specific extraction metadata."""
+        return {}

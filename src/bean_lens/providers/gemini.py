@@ -120,3 +120,6 @@ class GeminiProvider(BaseProvider):
             raise
         except Exception as e:
             raise ImageError(f"Failed to extract info: {e}") from e
+
+    def get_extraction_metadata(self) -> dict[str, str]:
+        return {"provider": "gemini", "parser": "gemini_vision"}
