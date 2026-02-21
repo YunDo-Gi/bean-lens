@@ -16,8 +16,10 @@ permissions:
 
 jobs:
   propose-dictionary-update:
-    if: ${{ secrets.UNKNOWN_QUEUE_DATABASE_URL != '' }}
     runs-on: ubuntu-latest
+    env:
+      DAYS: ${{ github.event.inputs.days || '7' }}
+      DATABASE_URL: ${{ secrets.UNKNOWN_QUEUE_DATABASE_URL }}
 
     steps:
       - name: Checkout
@@ -33,21 +35,22 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e '.[dev]' psycopg[binary]
 
-      - name: Generate weekly unknown queue report
-        env:
-          DATABASE_URL: ${{ secrets.UNKNOWN_QUEUE_DATABASE_URL }}
+      - name: Validate required secret
         run: |
-          DAYS="${{ github.event_name == 'workflow_dispatch' && inputs.days || '7' }}"
+          if [ -z "$DATABASE_URL" ]; then
+            echo "UNKNOWN_QUEUE_DATABASE_URL secret is missing"
+            exit 1
+          fi
+
+      - name: Generate weekly unknown queue report
+        run: |
           python scripts/weekly_unknown_queue_report.py \
             --database-url "$DATABASE_URL" \
             --days "$DAYS" \
             --output data/review/unknown_queue_weekly.md
 
       - name: Generate alias candidates
-        env:
-          DATABASE_URL: ${{ secrets.UNKNOWN_QUEUE_DATABASE_URL }}
         run: |
-          DAYS="${{ github.event_name == 'workflow_dispatch' && inputs.days || '7' }}"
           python scripts/generate_alias_candidates.py \
             --database-url "$DATABASE_URL" \
             --days "$DAYS" \
