@@ -113,5 +113,7 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
         raise HTTPException(status_code=429, detail=str(exc)) from exc
     except ImageError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except HTTPException:
+        raise
     except Exception:
         raise HTTPException(status_code=500, detail="internal_error")
