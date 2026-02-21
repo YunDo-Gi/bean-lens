@@ -15,9 +15,9 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from bean_lens import extract  # noqa: E402
+from bean_lens import extract, normalize_bean_info  # noqa: E402
 from bean_lens.exceptions import AuthenticationError, ImageError, RateLimitError  # noqa: E402
-from bean_lens.schema import BeanInfo  # noqa: E402
+from bean_lens.normalization.types import NormalizedBeanInfo  # noqa: E402
 
 app = FastAPI(title="bean-lens API", version="1.0.0")
 
@@ -25,6 +25,8 @@ raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
+DICTIONARY_VERSION = os.getenv("DICTIONARY_VERSION", "v1")
+UNKNOWN_QUEUE_PATH = os.getenv("UNKNOWN_QUEUE_PATH")
 
 app.add_middleware(
     CORSMiddleware,
@@ -80,8 +82,8 @@ def _decode_base64_image(image_base64: str) -> bytes:
     return payload
 
 
-@app.post("/extract", response_model=BeanInfo)
-async def extract_bean_info(request: Request, image: UploadFile | None = File(default=None)) -> BeanInfo:
+@app.post("/extract", response_model=NormalizedBeanInfo)
+async def extract_bean_info(request: Request, image: UploadFile | None = File(default=None)) -> NormalizedBeanInfo:
     content_type = request.headers.get("content-type", "")
 
     if content_type.startswith("application/json"):
@@ -101,7 +103,13 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
 
     try:
         pil_image = Image.open(BytesIO(payload))
-        return extract(pil_image)
+        extracted = extract(pil_image)
+        normalized = normalize_bean_info(
+            extracted,
+            dictionary_version=DICTIONARY_VERSION,
+            unknown_queue_path=UNKNOWN_QUEUE_PATH,
+        )
+        return normalized
     except UnidentifiedImageError as exc:
         raise HTTPException(status_code=400, detail="invalid image format") from exc
     except AuthenticationError as exc:

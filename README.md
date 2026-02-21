@@ -85,6 +85,7 @@ This repository can be deployed as a Python API on Vercel.
 - `POST /extract`: supports both
   - `multipart/form-data` (`image` file field)
   - `application/json` (`imageBase64` string, raw base64 or Data URL)
+  - response: `NormalizedBeanInfo`
 
 ### Local API run
 
@@ -110,6 +111,13 @@ Optional upload limit (bytes, default: 8388608 = 8MB):
 
 ```bash
 export MAX_IMAGE_BYTES=8388608
+```
+
+Optional normalization settings:
+
+```bash
+export DICTIONARY_VERSION=v1
+export UNKNOWN_QUEUE_PATH=/tmp/bean-lens-unknown.jsonl
 ```
 
 3. Run FastAPI locally:
