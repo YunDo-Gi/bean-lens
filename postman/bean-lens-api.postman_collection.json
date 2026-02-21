@@ -50,6 +50,38 @@
         "description": "Attach an image file in the `image` field and send."
       },
       "response": []
+    },
+    {
+      "name": "Extract Bean Info (Base64 JSON)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"imageBase64\": \"<base64-encoded-image-or-data-url>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/extract",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "extract"
+          ]
+        },
+        "description": "Send `imageBase64` in JSON. Supports raw base64 and Data URL."
+      },
+      "response": []
     }
   ],
   "variable": [

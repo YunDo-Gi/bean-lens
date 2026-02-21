@@ -69,7 +69,9 @@ This repository can be deployed as a Python API on Vercel.
 ### Endpoints
 
 - `GET /health`: health check
-- `POST /extract`: image upload (`multipart/form-data`, field name: `image`)
+- `POST /extract`: supports both
+  - `multipart/form-data` (`image` file field)
+  - `application/json` (`imageBase64` string, raw base64 or Data URL)
 
 ### Local API run
 
@@ -91,6 +93,12 @@ Optional CORS origins (comma-separated):
 export FRONTEND_ORIGINS=http://localhost:5173,https://your-frontend-domain.com
 ```
 
+Optional upload limit (bytes, default: 8388608 = 8MB):
+
+```bash
+export MAX_IMAGE_BYTES=8388608
+```
+
 3. Run FastAPI locally:
 
 ```bash
@@ -107,6 +115,14 @@ curl http://localhost:8000/health
 curl -X POST "http://localhost:8000/extract" \
   -F "image=@coffee_package.jpg"
 ```
+
+```bash
+curl -X POST "http://localhost:8000/extract" \
+  -H "Content-Type: application/json" \
+  -d '{"imageBase64":"<base64-encoded-image>"}'
+```
+
+Allowed image formats: `JPEG`, `PNG`, `WebP`
 
 ### Vercel deployment
 
