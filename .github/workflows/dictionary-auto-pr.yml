@@ -59,6 +59,17 @@ jobs:
             --min-count 3 \
             --min-score 0.90
 
+      - name: Generate new term candidates (review only)
+        run: |
+          python scripts/generate_new_term_candidates.py \
+            --database-url "$DATABASE_URL" \
+            --days "$DAYS" \
+            --dictionary-version v1 \
+            --output data/review/new_term_candidates.auto.json \
+            --min-count 3 \
+            --max-best-score 0.87 \
+            --top 200
+
       - name: Apply safe candidates
         run: |
           python scripts/apply_dictionary_candidates.py \
@@ -85,6 +96,7 @@ jobs:
             Included:
             - Weekly unknown queue report (`data/review/unknown_queue_weekly.md`)
             - Generated alias candidates (`data/review/alias_candidates.auto.json`)
+            - Generated new term candidates (`data/review/new_term_candidates.auto.json`)
             - Safe alias applications to v1 dictionary
 
             Safety policy:
@@ -100,5 +112,6 @@ jobs:
           add-paths: |
             data/review/unknown_queue_weekly.md
             data/review/alias_candidates.auto.json
+            data/review/new_term_candidates.auto.json
             src/bean_lens/normalization/data/v1/aliases.py
             src/bean_lens/normalization/data/v1/aliases.json

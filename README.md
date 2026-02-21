@@ -271,6 +271,18 @@ python scripts/apply_dictionary_candidates.py \
   --flavor-min-score 0.94
 ```
 
+To generate new term candidates (review-only):
+
+```bash
+python scripts/generate_new_term_candidates.py \
+  --database-url "$DATABASE_URL" \
+  --days 7 \
+  --dictionary-version v1 \
+  --output data/review/new_term_candidates.auto.json \
+  --min-count 3 \
+  --max-best-score 0.87
+```
+
 ### Weekly auto-PR (approval workflow)
 
 This repository includes a weekly GitHub Actions workflow:
@@ -279,6 +291,7 @@ This repository includes a weekly GitHub Actions workflow:
 What it does:
 - reads unknown queue events from receiver DB
 - generates weekly report + alias candidates
+- generates new term candidates (review only)
 - applies only safe alias updates
 - opens a PR for human review/merge
 
