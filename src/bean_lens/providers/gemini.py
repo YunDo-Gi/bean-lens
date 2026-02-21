@@ -103,9 +103,20 @@ class GeminiProvider(BaseProvider):
             return BeanInfo.model_validate_json(response.text)
 
         except genai.errors.ClientError as e:
-            if "rate" in str(e).lower() or "quota" in str(e).lower():
+            message = str(e).lower()
+            status_code = getattr(e, "status_code", None)
+            code = getattr(e, "code", None)
+            if (
+                status_code == 429
+                or code == 429
+                or "429" in message
+                or "rate" in message
+                or "quota" in message
+                or "resource_exhausted" in message
+                or "too many requests" in message
+            ):
                 raise RateLimitError(f"API rate limit exceeded: {e}") from e
-            if "auth" in str(e).lower() or "key" in str(e).lower():
+            if status_code == 401 or status_code == 403 or "auth" in message or "key" in message:
                 raise AuthenticationError(f"Invalid API key: {e}") from e
             raise
         except Exception as e:
