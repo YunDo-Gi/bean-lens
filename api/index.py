@@ -27,13 +27,21 @@ MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
 DICTIONARY_VERSION = os.getenv("DICTIONARY_VERSION", "v1")
 UNKNOWN_QUEUE_PATH = os.getenv("UNKNOWN_QUEUE_PATH")
+UNKNOWN_QUEUE_WEBHOOK_URL = os.getenv("UNKNOWN_QUEUE_WEBHOOK_URL")
 unknown_min_confidence_raw = os.getenv("UNKNOWN_QUEUE_MIN_CONFIDENCE")
+unknown_queue_webhook_timeout_raw = os.getenv("UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC")
 try:
     UNKNOWN_QUEUE_MIN_CONFIDENCE = (
         float(unknown_min_confidence_raw) if unknown_min_confidence_raw else None
     )
 except ValueError:
     UNKNOWN_QUEUE_MIN_CONFIDENCE = None
+try:
+    UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC = (
+        float(unknown_queue_webhook_timeout_raw) if unknown_queue_webhook_timeout_raw else 2.0
+    )
+except ValueError:
+    UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC = 2.0
 
 app.add_middleware(
     CORSMiddleware,
@@ -116,6 +124,8 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
             dictionary_version=DICTIONARY_VERSION,
             unknown_queue_path=UNKNOWN_QUEUE_PATH,
             unknown_min_confidence=UNKNOWN_QUEUE_MIN_CONFIDENCE,
+            unknown_queue_webhook_url=UNKNOWN_QUEUE_WEBHOOK_URL,
+            unknown_queue_webhook_timeout_sec=UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC,
         )
         return normalized
     except UnidentifiedImageError as exc:

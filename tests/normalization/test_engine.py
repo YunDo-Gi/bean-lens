@@ -4,6 +4,7 @@ import json
 
 from bean_lens import BeanInfo, Origin, normalize_bean_info
 from bean_lens.normalization import NormalizationConfig, NormalizationEngine
+import bean_lens.normalization.engine as engine_module
 
 
 def test_normalize_process_exact():
@@ -128,3 +129,27 @@ def test_low_confidence_match_writes_unknown_queue(tmp_path):
     assert payload["reason"] == "low_confidence"
     assert payload["domain"] == "flavor_note"
     assert payload["raw"] == "chocolet"
+
+
+def test_unmapped_sends_webhook(monkeypatch):
+    captured: list[tuple[str, dict, float]] = []
+
+    def fake_send(url: str, payload: dict, *, timeout_sec: float) -> None:
+        captured.append((url, payload, timeout_sec))
+
+    monkeypatch.setattr(engine_module, "_send_unknown_webhook", fake_send)
+
+    engine = NormalizationEngine(
+        config=NormalizationConfig(
+            unknown_queue_webhook_url="https://example.com/hook",
+            unknown_queue_webhook_timeout_sec=1.2,
+        )
+    )
+    engine.normalize_one("process", "Mystery Process")
+
+    assert len(captured) == 1
+    url, payload, timeout_sec = captured[0]
+    assert url == "https://example.com/hook"
+    assert timeout_sec == 1.2
+    assert payload["domain"] == "process"
+    assert payload["reason"] == "no_dictionary_match"

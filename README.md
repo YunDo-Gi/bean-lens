@@ -119,6 +119,8 @@ Optional normalization settings:
 export DICTIONARY_VERSION=v1
 export UNKNOWN_QUEUE_PATH=/tmp/bean-lens-unknown.jsonl
 export UNKNOWN_QUEUE_MIN_CONFIDENCE=0.85
+export UNKNOWN_QUEUE_WEBHOOK_URL=https://your-endpoint.example.com/unknown-queue
+export UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC=2.0
 ```
 
 3. Run FastAPI locally:
@@ -194,7 +196,8 @@ Review and selectively merge candidates into
 ### Unknown queue operations
 
 When `UNKNOWN_QUEUE_PATH` is set, unmapped (and optionally low-confidence) normalization
-results are appended as JSONL records.
+results are appended as JSONL records.  
+When `UNKNOWN_QUEUE_WEBHOOK_URL` is set, the same records are also sent as HTTP POST JSON.
 
 To review frequent misses:
 

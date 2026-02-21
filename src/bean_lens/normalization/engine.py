@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
+from urllib import error, request
 
 from bean_lens.schema import BeanInfo
 from bean_lens.normalization.repository import Alias, DictionaryRepository, Term
@@ -32,6 +33,8 @@ class NormalizationConfig:
     fuzzy_threshold: float = 0.86
     unknown_queue_path: str | None = None
     unknown_min_confidence: float | None = None
+    unknown_queue_webhook_url: str | None = None
+    unknown_queue_webhook_timeout_sec: float = 2.0
 
 
 class NormalizationEngine:
@@ -253,12 +256,6 @@ class NormalizationEngine:
         method: Method,
         normalized_key: str | None,
     ) -> None:
-        path_value = self.config.unknown_queue_path
-        if not path_value:
-            return
-
-        path = Path(path_value)
-        path.parent.mkdir(parents=True, exist_ok=True)
         payload = {
             "ts": datetime.now(timezone.utc).isoformat(),
             "domain": domain,
@@ -269,8 +266,20 @@ class NormalizationEngine:
             "normalized_key": normalized_key,
             "dictionary_version": self.config.dictionary_version,
         }
-        with path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+        path_value = self.config.unknown_queue_path
+        if path_value:
+            path = Path(path_value)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with path.open("a", encoding="utf-8") as f:
+                f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+
+        webhook_url = self.config.unknown_queue_webhook_url
+        if webhook_url:
+            _send_unknown_webhook(
+                webhook_url,
+                payload,
+                timeout_sec=self.config.unknown_queue_webhook_timeout_sec,
+            )
 
 
 def normalize_bean_info(
@@ -280,6 +289,8 @@ def normalize_bean_info(
     fuzzy_threshold: float = 0.86,
     unknown_queue_path: str | None = None,
     unknown_min_confidence: float | None = None,
+    unknown_queue_webhook_url: str | None = None,
+    unknown_queue_webhook_timeout_sec: float = 2.0,
 ) -> NormalizedBeanInfo:
     """Normalize extracted BeanInfo using dictionary-based rules."""
 
@@ -289,9 +300,27 @@ def normalize_bean_info(
             fuzzy_threshold=fuzzy_threshold,
             unknown_queue_path=unknown_queue_path,
             unknown_min_confidence=unknown_min_confidence,
+            unknown_queue_webhook_url=unknown_queue_webhook_url,
+            unknown_queue_webhook_timeout_sec=unknown_queue_webhook_timeout_sec,
         )
     )
     return engine.normalize_bean_info(bean)
+
+
+def _send_unknown_webhook(url: str, payload: dict, *, timeout_sec: float) -> None:
+    data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    req = request.Request(
+        url,
+        data=data,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with request.urlopen(req, timeout=timeout_sec):
+            pass
+    except (error.URLError, TimeoutError, ValueError):
+        # Unknown queue should never break extraction path.
+        return
 
 
 def _normalize_text(value: str) -> str:
