@@ -25,7 +25,7 @@ raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/png", "image/webp"}
-ALLOWED_PIL_FORMATS = {"JPEG", "PNG", "WEBP"}
+ALLOWED_PIL_FORMATS = {"JPEG", "PNG", "WEBP", "MPO"}
 
 app.add_middleware(
     CORSMiddleware,

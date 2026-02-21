@@ -135,7 +135,7 @@ curl -X POST "http://localhost:8000/extract" \
   -d '{"imageBase64":"<base64-encoded-image>"}'
 ```
 
-Allowed image formats: `JPEG`, `PNG`, `WebP`
+Allowed image formats: `JPEG`, `PNG`, `WebP`, `MPO`
 
 ### Vercel deployment
 
