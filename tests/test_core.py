@@ -11,11 +11,11 @@ def test_extract_requires_api_key(monkeypatch):
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
 
     with pytest.raises(AuthenticationError):
-        extract("test.jpg")
+        extract("test.jpg", provider="gemini")
 
 
-def test_extract_with_mock_provider(mocker):
-    """extract() should return BeanInfo from provider."""
+def test_extract_with_mock_gemini_provider(mocker):
+    """extract() should return BeanInfo from gemini provider."""
     mock_bean_info = BeanInfo(
         roastery="Test Roastery",
         name="Test Coffee",
@@ -30,12 +30,9 @@ def test_extract_with_mock_provider(mocker):
     mock_provider = mocker.MagicMock()
     mock_provider.extract.return_value = mock_bean_info
 
-    mocker.patch(
-        "bean_lens.core.GeminiProvider",
-        return_value=mock_provider,
-    )
+    mocker.patch("bean_lens.core._build_gemini_provider", return_value=mock_provider)
 
-    result = extract("test_image.jpg", api_key="test-key")
+    result = extract("test_image.jpg", api_key="test-key", provider="gemini")
 
     assert result.roastery == "Test Roastery"
     assert result.origin.country == "Ethiopia"
@@ -53,15 +50,29 @@ def test_extract_returns_partial_info(mocker):
     mock_provider = mocker.MagicMock()
     mock_provider.extract.return_value = mock_bean_info
 
-    mocker.patch(
-        "bean_lens.core.GeminiProvider",
-        return_value=mock_provider,
-    )
+    mocker.patch("bean_lens.core._build_gemini_provider", return_value=mock_provider)
 
-    result = extract("test_image.jpg", api_key="test-key")
+    result = extract("test_image.jpg", api_key="test-key", provider="gemini")
 
     assert result.roastery == "Partial Roastery"
     assert result.origin.country == "Colombia"
     assert result.name is None
     assert result.flavor_notes is None
     assert result.variety is None
+
+
+def test_extract_uses_ocr_provider_when_selected(mocker):
+    mock_provider = mocker.MagicMock()
+    mock_provider.extract.return_value = BeanInfo(roastery="OCR")
+
+    mocker.patch("bean_lens.core._build_ocr_provider", return_value=mock_provider)
+
+    result = extract("test_image.jpg", provider="ocr")
+
+    assert result.roastery == "OCR"
+    mock_provider.extract.assert_called_once_with("test_image.jpg")
+
+
+def test_extract_unsupported_provider_raises():
+    with pytest.raises(ValueError):
+        extract("test_image.jpg", provider="unknown")

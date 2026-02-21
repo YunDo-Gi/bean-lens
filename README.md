@@ -1,6 +1,6 @@
 # bean-lens
 
-Extract structured coffee bean info from package or card images using Vision LLM.
+Extract structured coffee bean info from package or card images using Vision LLM or OCR.
 
 ## Installation
 
@@ -16,10 +16,23 @@ uv add bean-lens
 
 ## Setup
 
-Get a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey) and set it as an environment variable:
+Default provider is Gemini Vision:
 
 ```bash
 export GEMINI_API_KEY=your-api-key
+```
+
+To use Google Vision OCR instead:
+
+```bash
+export BEAN_LENS_PROVIDER=ocr
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+```
+
+For serverless environments, you can pass credentials as JSON:
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type":"service_account", ... }'
 ```
 
 ## Usage
@@ -95,10 +108,12 @@ This repository can be deployed as a Python API on Vercel.
 pip install -r requirements.txt
 ```
 
-2. Set Gemini API key:
+2. Set provider environment variables:
 
 ```bash
 export GEMINI_API_KEY=your-api-key
+export BEAN_LENS_PROVIDER=gemini  # or ocr
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json  # for ocr
 ```
 
 Optional CORS origins (comma-separated):
@@ -154,6 +169,8 @@ Allowed upload MIME types (multipart): `image/jpeg`, `image/jpg`, `image/png`, `
 1. Import this repository in Vercel.
 2. Add environment variable:
    - `GEMINI_API_KEY`
+   - `BEAN_LENS_PROVIDER` (`gemini` or `ocr`)
+   - `GOOGLE_APPLICATION_CREDENTIALS_JSON` (when `BEAN_LENS_PROVIDER=ocr`)
    - `FRONTEND_ORIGINS` (example: `https://your-frontend-domain.com`)
 3. Deploy. (Configuration is already defined in `vercel.json`.)
 4. Verify:
