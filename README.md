@@ -62,6 +62,20 @@ JSON output:
 bean-lens image.jpg --json
 ```
 
+### Normalization (v1)
+
+You can normalize extracted fields into canonical dictionary keys:
+
+```python
+from bean_lens import extract, normalize_bean_info
+
+bean = extract("coffee_package.jpg")
+normalized = normalize_bean_info(bean, dictionary_version="v1")
+
+print(normalized.process.normalized_key)  # washed
+print(normalized.country.normalized_key)  # ET
+```
+
 ## API (FastAPI + Vercel)
 
 This repository can be deployed as a Python API on Vercel.
