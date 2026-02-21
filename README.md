@@ -203,3 +203,13 @@ python scripts/summarize_unknown_queue.py \
   --input /tmp/bean-lens-unknown.jsonl \
   --top 50
 ```
+
+To generate alias review candidates from the queue:
+
+```bash
+python scripts/generate_alias_candidates.py \
+  --input /tmp/bean-lens-unknown.jsonl \
+  --output data/review/alias_candidates.json \
+  --min-count 2 \
+  --min-score 0.72
+```
