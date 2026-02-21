@@ -62,6 +62,63 @@ JSON output:
 bean-lens image.jpg --json
 ```
 
+## API (FastAPI + Vercel)
+
+This repository can be deployed as a Python API on Vercel.
+
+### Endpoints
+
+- `GET /health`: health check
+- `POST /extract`: image upload (`multipart/form-data`, field name: `image`)
+
+### Local API run
+
+1. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Set Gemini API key:
+
+```bash
+export GEMINI_API_KEY=your-api-key
+```
+
+Optional CORS origins (comma-separated):
+
+```bash
+export FRONTEND_ORIGINS=http://localhost:5173,https://your-frontend-domain.com
+```
+
+3. Run FastAPI locally:
+
+```bash
+uvicorn api.index:app --reload --port 8000
+```
+
+4. Test:
+
+```bash
+curl http://localhost:8000/health
+```
+
+```bash
+curl -X POST "http://localhost:8000/extract" \
+  -F "image=@coffee_package.jpg"
+```
+
+### Vercel deployment
+
+1. Import this repository in Vercel.
+2. Add environment variable:
+   - `GEMINI_API_KEY`
+   - `FRONTEND_ORIGINS` (example: `https://your-frontend-domain.com`)
+3. Deploy. (Configuration is already defined in `vercel.json`.)
+4. Verify:
+   - `https://<your-vercel-domain>/health`
+   - `POST https://<your-vercel-domain>/extract`
+
 ## Extracted Fields
 
 | Field | Description |
