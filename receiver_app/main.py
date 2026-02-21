@@ -1,4 +1,4 @@
-"""Minimal webhook receiver for unknown-queue events.
+"""Minimal webhook receiver for unknown-queue events (PostgreSQL).
 
 Run locally:
   uvicorn receiver_app.main:app --reload --port 8100
@@ -7,17 +7,17 @@ Run locally:
 from __future__ import annotations
 
 import os
-import sqlite3
 from datetime import datetime
-from pathlib import Path
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from pydantic import BaseModel, Field
+import psycopg
+from psycopg.rows import dict_row
 
-DB_PATH = os.getenv("UNKNOWN_QUEUE_RECEIVER_DB_PATH", "/tmp/unknown_queue_events.db")
+DATABASE_URL = os.getenv("DATABASE_URL")
 WEBHOOK_TOKEN = os.getenv("UNKNOWN_QUEUE_RECEIVER_TOKEN")
 
-app = FastAPI(title="Unknown Queue Receiver", version="1.0.0")
+app = FastAPI(title="Unknown Queue Receiver", version="1.1.0")
 
 
 class UnknownQueueEvent(BaseModel):
@@ -36,41 +36,45 @@ class UnknownQueueEventOut(UnknownQueueEvent):
     received_at: datetime
 
 
-def _conn() -> sqlite3.Connection:
-    db_path = Path(DB_PATH)
-    db_path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    return conn
+def _require_database_url() -> str:
+    if not DATABASE_URL:
+        raise RuntimeError("DATABASE_URL is required for receiver_app")
+    return DATABASE_URL
+
+
+def _conn() -> psycopg.Connection:
+    return psycopg.connect(_require_database_url(), row_factory=dict_row)
 
 
 def _init_db() -> None:
     with _conn() as conn:
-        conn.execute(
-            """
-            create table if not exists unknown_queue_events (
-              id integer primary key autoincrement,
-              ts text not null,
-              domain text not null,
-              raw text not null,
-              confidence real not null,
-              reason text not null,
-              method text not null,
-              normalized_key text null,
-              dictionary_version text not null,
-              received_at text not null default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                create table if not exists unknown_queue_events (
+                  id bigserial primary key,
+                  ts timestamptz not null,
+                  domain text not null,
+                  raw text not null,
+                  confidence double precision not null,
+                  reason text not null,
+                  method text not null,
+                  normalized_key text null,
+                  dictionary_version text not null,
+                  received_at timestamptz not null default now()
+                )
+                """
             )
-            """
-        )
-        conn.execute(
-            "create index if not exists idx_unknown_queue_events_domain on unknown_queue_events(domain)"
-        )
-        conn.execute(
-            "create index if not exists idx_unknown_queue_events_reason on unknown_queue_events(reason)"
-        )
-        conn.execute(
-            "create index if not exists idx_unknown_queue_events_received_at on unknown_queue_events(received_at)"
-        )
+            cur.execute(
+                "create index if not exists idx_unknown_queue_events_domain on unknown_queue_events(domain)"
+            )
+            cur.execute(
+                "create index if not exists idx_unknown_queue_events_reason on unknown_queue_events(reason)"
+            )
+            cur.execute(
+                "create index if not exists idx_unknown_queue_events_received_at on unknown_queue_events(received_at)"
+            )
+        conn.commit()
 
 
 @app.on_event("startup")
@@ -94,24 +98,29 @@ def ingest_event(
     _: None = Depends(_verify_token),
 ) -> dict[str, int]:
     with _conn() as conn:
-        cur = conn.execute(
-            """
-            insert into unknown_queue_events (
-              ts, domain, raw, confidence, reason, method, normalized_key, dictionary_version
-            ) values (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                event.ts.isoformat(),
-                event.domain,
-                event.raw,
-                event.confidence,
-                event.reason,
-                event.method,
-                event.normalized_key,
-                event.dictionary_version,
-            ),
-        )
-        event_id = int(cur.lastrowid)
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                insert into unknown_queue_events (
+                  ts, domain, raw, confidence, reason, method, normalized_key, dictionary_version
+                ) values (%s, %s, %s, %s, %s, %s, %s, %s)
+                returning id
+                """,
+                (
+                    event.ts,
+                    event.domain,
+                    event.raw,
+                    event.confidence,
+                    event.reason,
+                    event.method,
+                    event.normalized_key,
+                    event.dictionary_version,
+                ),
+            )
+            row = cur.fetchone()
+        conn.commit()
+
+    event_id = int(row["id"]) if row and row.get("id") is not None else 0
     return {"id": event_id}
 
 
@@ -121,28 +130,38 @@ def recent_events(
     _: None = Depends(_verify_token),
 ) -> list[UnknownQueueEventOut]:
     with _conn() as conn:
-        rows = conn.execute(
-            """
-            select id, ts, domain, raw, confidence, reason, method, normalized_key, dictionary_version, received_at
-            from unknown_queue_events
-            order by id desc
-            limit ?
-            """,
-            (limit,),
-        ).fetchall()
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                select id, ts, domain, raw, confidence, reason, method, normalized_key, dictionary_version, received_at
+                from unknown_queue_events
+                order by id desc
+                limit %s
+                """,
+                (limit,),
+            )
+            rows = cur.fetchall()
 
     return [
         UnknownQueueEventOut(
-            id=row["id"],
-            ts=datetime.fromisoformat(row["ts"]),
+            id=int(row["id"]),
+            ts=_as_datetime(row["ts"]),
             domain=row["domain"],
             raw=row["raw"],
-            confidence=row["confidence"],
+            confidence=float(row["confidence"]),
             reason=row["reason"],
             method=row["method"],
             normalized_key=row["normalized_key"],
             dictionary_version=row["dictionary_version"],
-            received_at=datetime.fromisoformat(row["received_at"].replace("Z", "+00:00")),
+            received_at=_as_datetime(row["received_at"]),
         )
         for row in rows
     ]
+
+
+def _as_datetime(value: datetime | str) -> datetime:
+    if isinstance(value, datetime):
+        return value
+    if isinstance(value, str):
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    raise ValueError("Invalid datetime value")

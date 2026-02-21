@@ -221,7 +221,7 @@ python scripts/generate_alias_candidates.py \
 ### Webhook receiver (DB sink)
 
 This repository includes a minimal receiver server that stores unknown queue
-events in SQLite.
+events in PostgreSQL (Supabase-compatible).
 
 Run receiver:
 
@@ -238,9 +238,8 @@ Deploy on Vercel:
 Receiver environment variables:
 
 ```bash
-export UNKNOWN_QUEUE_RECEIVER_DB_PATH=./data/unknown_queue_events.db
+export DATABASE_URL=postgresql://<user>:<password>@<host>:5432/<db>?sslmode=require
 export UNKNOWN_QUEUE_RECEIVER_TOKEN=your-shared-token
-export UNKNOWN_QUEUE_RECEIVER_DB_PATH=/tmp/unknown_queue_events.db
 ```
 
 Then configure bean-lens API:
