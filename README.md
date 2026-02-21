@@ -260,6 +260,34 @@ python scripts/weekly_unknown_queue_report.py \
   --output data/review/unknown_queue_weekly.md
 ```
 
+To auto-apply safe alias candidates:
+
+```bash
+python scripts/apply_dictionary_candidates.py \
+  --input data/review/alias_candidates.auto.json \
+  --dictionary-version v1 \
+  --min-count 3 \
+  --min-score 0.90 \
+  --flavor-min-score 0.94
+```
+
+### Weekly auto-PR (approval workflow)
+
+This repository includes a weekly GitHub Actions workflow:
+`.github/workflows/dictionary-auto-pr.yml`
+
+What it does:
+- reads unknown queue events from receiver DB
+- generates weekly report + alias candidates
+- applies only safe alias updates
+- opens a PR for human review/merge
+
+Required repository secret:
+
+```bash
+UNKNOWN_QUEUE_DATABASE_URL=postgresql://<user>:<password>@<host>:<port>/<db>?sslmode=require
+```
+
 ### Webhook receiver (DB sink)
 
 This repository includes a minimal receiver server that stores unknown queue

@@ -4,6 +4,11 @@ Usage:
   python scripts/generate_alias_candidates.py \
     --input /tmp/bean-lens-unknown.jsonl \
     --output data/review/alias_candidates.json
+
+  python scripts/generate_alias_candidates.py \
+    --database-url "$DATABASE_URL" \
+    --days 7 \
+    --output data/review/alias_candidates.json
 """
 
 from __future__ import annotations
@@ -13,6 +18,7 @@ import json
 import re
 import unicodedata
 from collections import Counter, defaultdict
+from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
@@ -24,7 +30,9 @@ VALID_DOMAINS = {"process", "variety", "roast_level", "country", "flavor_note"}
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate alias candidates from unknown queue")
-    parser.add_argument("--input", required=True, help="Path to unknown queue JSONL")
+    parser.add_argument("--input", help="Path to unknown queue JSONL")
+    parser.add_argument("--database-url", help="PostgreSQL DATABASE_URL for receiver DB")
+    parser.add_argument("--days", type=int, default=7, help="Lookback window in days (default: 7)")
     parser.add_argument("--output", required=True, help="Path to output candidate JSON")
     parser.add_argument("--dictionary-version", default="v1", help="Dictionary version (default: v1)")
     parser.add_argument("--min-count", type=int, default=2, help="Minimum count to include candidate")
@@ -69,6 +77,36 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def load_from_postgres(database_url: str) -> list[dict[str, Any]]:
+    try:
+        import psycopg
+        from psycopg.rows import dict_row
+    except Exception as exc:  # pragma: no cover
+        raise RuntimeError("psycopg is required for --database-url mode") from exc
+
+    query = """
+        select ts, domain, raw, confidence, reason, method, normalized_key, dictionary_version
+        from unknown_queue_events
+    """
+    with psycopg.connect(database_url, row_factory=dict_row) as conn:
+        with conn.cursor() as cur:
+            cur.execute(query)
+            rows = cur.fetchall()
+    return [dict(row) for row in rows]
+
+
+def parse_datetime(value: Any) -> datetime | None:
+    if isinstance(value, datetime):
+        dt = value
+    elif isinstance(value, str) and value:
+        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    else:
+        return None
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
 def load_dictionary(version: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     base = ROOT / "src" / "bean_lens" / "normalization" / "data" / version
     terms_path = base / "terms.json"
@@ -104,7 +142,22 @@ def best_term_match(terms: list[dict[str, Any]], domain: str, raw: str) -> tuple
 
 def main() -> int:
     args = parse_args()
-    records = load_jsonl(Path(args.input))
+    if bool(args.input) == bool(args.database_url):
+        raise SystemExit("Provide exactly one source: --input or --database-url")
+
+    if args.input:
+        records = load_jsonl(Path(args.input))
+    else:
+        records = load_from_postgres(args.database_url)
+
+    since_utc = datetime.now(timezone.utc) - timedelta(days=args.days)
+    filtered_records: list[dict[str, Any]] = []
+    for row in records:
+        ts = parse_datetime(row.get("ts"))
+        if ts is None or ts < since_utc:
+            continue
+        filtered_records.append(row)
+
     terms, aliases = load_dictionary(args.dictionary_version)
 
     existing_aliases: set[tuple[str, str]] = set()
@@ -124,7 +177,7 @@ def main() -> int:
         }
     )
 
-    for row in records:
+    for row in filtered_records:
         domain = str(row.get("domain", "")).strip()
         raw = str(row.get("raw", "")).strip()
         reason = str(row.get("reason", ""))
@@ -195,6 +248,7 @@ def main() -> int:
 
     summary = {
         "input_records": len(records),
+        "filtered_records": len(filtered_records),
         "grouped_candidates": len(candidates),
         "written_candidates": len(limited),
         "output": str(output_path),
