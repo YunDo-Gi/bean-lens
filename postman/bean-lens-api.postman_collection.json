@@ -1,0 +1,61 @@
+{
+  "info": {
+    "_postman_id": "5e3dfecf-7f8c-4a8a-9d0e-2ea6e27f7cf1",
+    "name": "bean-lens API",
+    "description": "Postman collection for bean-lens FastAPI deployed on Vercel.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Extract Bean Info",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/extract",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "extract"
+          ]
+        },
+        "description": "Attach an image file in the `image` field and send."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://bean-lens.vercel.app"
+    }
+  ]
+}
