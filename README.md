@@ -230,6 +230,11 @@ pip install -r receiver_app/requirements.txt
 uvicorn receiver_app.main:app --reload --port 8100
 ```
 
+Deploy on Vercel:
+1. Create a new Vercel project from the same repository
+2. Set `Root Directory` to `receiver_app`
+3. Deploy (uses `receiver_app/api/index.py` and `receiver_app/vercel.json`)
+
 Receiver environment variables:
 
 ```bash
