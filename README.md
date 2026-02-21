@@ -137,6 +137,8 @@ Optional normalization settings:
 
 ```bash
 export DICTIONARY_VERSION=v1
+export FLAVOR_NOTE_MODE=strict
+export FLAVOR_NOTE_FUZZY_THRESHOLD=0.94
 export UNKNOWN_QUEUE_PATH=/tmp/bean-lens-unknown.jsonl
 export UNKNOWN_QUEUE_MIN_CONFIDENCE=0.85
 export UNKNOWN_QUEUE_WEBHOOK_URL=https://your-endpoint.example.com/unknown-queue
@@ -238,6 +240,24 @@ python scripts/generate_alias_candidates.py \
   --output data/review/alias_candidates.json \
   --min-count 2 \
   --min-score 0.72
+```
+
+To generate a weekly report (Markdown):
+
+```bash
+python scripts/weekly_unknown_queue_report.py \
+  --input /tmp/bean-lens-unknown.jsonl \
+  --days 7 \
+  --output data/review/unknown_queue_weekly.md
+```
+
+Receiver DB report mode:
+
+```bash
+python scripts/weekly_unknown_queue_report.py \
+  --database-url "$DATABASE_URL" \
+  --days 7 \
+  --output data/review/unknown_queue_weekly.md
 ```
 
 ### Webhook receiver (DB sink)
