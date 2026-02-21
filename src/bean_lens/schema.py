@@ -21,5 +21,4 @@ class BeanInfo(BaseModel):
     process: str | None = None
     roast_level: str | None = None
     flavor_notes: list[str] | None = None
-    roast_date: str | None = None
     altitude: str | None = None

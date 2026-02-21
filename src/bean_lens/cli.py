@@ -63,7 +63,6 @@ def _print_formatted(result) -> None:
         ("Process", result.process),
         ("Roast Level", result.roast_level),
         ("Flavor Notes", _format_list(result.flavor_notes)),
-        ("Roast Date", result.roast_date),
         ("Altitude", result.altitude),
     ]
 

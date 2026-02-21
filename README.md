@@ -53,7 +53,6 @@ Output:
   Process:       Washed
   Roast Level:   Light
   Flavor Notes:  Citrus, Jasmine, Honey
-  Roast Date:    2024.01.15
   Altitude:      1,800-2,000m
 ```
 
@@ -160,7 +159,6 @@ Allowed image formats: `JPEG`, `PNG`, `WebP`
 | `process` | Processing method (e.g., Washed, Natural) |
 | `roast_level` | Roast level (e.g., Light, Medium, Dark) |
 | `flavor_notes` | Flavor notes list |
-| `roast_date` | Roast date |
 | `altitude` | Growing altitude |
 
 ## License

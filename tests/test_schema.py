@@ -38,7 +38,6 @@ def test_bean_info_with_data():
         process="Washed",
         roast_level="Light",
         flavor_notes=["Citrus", "Jasmine", "Honey"],
-        roast_date="2024-01-15",
         altitude="1800-2000m",
     )
     assert info.roastery == "Fritz Coffee"
