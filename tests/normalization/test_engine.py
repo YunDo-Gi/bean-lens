@@ -106,3 +106,25 @@ def test_unmapped_generates_warning():
     result = normalize_bean_info(bean)
 
     assert "process_unmapped" in result.warnings
+
+
+def test_low_confidence_match_writes_unknown_queue(tmp_path):
+    queue_path = tmp_path / "unknown.jsonl"
+    engine = NormalizationEngine(
+        config=NormalizationConfig(
+            unknown_queue_path=str(queue_path),
+            fuzzy_threshold=0.7,
+            unknown_min_confidence=0.9,
+        )
+    )
+
+    item = engine.normalize_one("flavor_note", "chocolet")
+
+    assert item.method == "fuzzy"
+    lines = queue_path.read_text(encoding="utf-8").strip().splitlines()
+    assert len(lines) == 1
+
+    payload = json.loads(lines[0])
+    assert payload["reason"] == "low_confidence"
+    assert payload["domain"] == "flavor_note"
+    assert payload["raw"] == "chocolet"

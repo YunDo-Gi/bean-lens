@@ -118,6 +118,7 @@ Optional normalization settings:
 ```bash
 export DICTIONARY_VERSION=v1
 export UNKNOWN_QUEUE_PATH=/tmp/bean-lens-unknown.jsonl
+export UNKNOWN_QUEUE_MIN_CONFIDENCE=0.85
 ```
 
 3. Run FastAPI locally:
@@ -189,3 +190,16 @@ Generated review files are written to `data/imports/beanconqueror/`:
 Review and selectively merge candidates into
 `src/bean_lens/normalization/data/v1/terms.py` and
 `src/bean_lens/normalization/data/v1/aliases.py`.
+
+### Unknown queue operations
+
+When `UNKNOWN_QUEUE_PATH` is set, unmapped (and optionally low-confidence) normalization
+results are appended as JSONL records.
+
+To review frequent misses:
+
+```bash
+python scripts/summarize_unknown_queue.py \
+  --input /tmp/bean-lens-unknown.jsonl \
+  --top 50
+```

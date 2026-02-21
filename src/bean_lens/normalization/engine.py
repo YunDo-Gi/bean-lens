@@ -31,6 +31,7 @@ class NormalizationConfig:
     dictionary_version: str = "v1"
     fuzzy_threshold: float = 0.86
     unknown_queue_path: str | None = None
+    unknown_min_confidence: float | None = None
 
 
 class NormalizationEngine:
@@ -92,7 +93,7 @@ class NormalizationEngine:
         )
 
         if match:
-            return NormalizedItem(
+            item = NormalizedItem(
                 domain=domain,
                 raw=raw,
                 normalized_key=match.key,
@@ -103,8 +104,26 @@ class NormalizationEngine:
                 candidates=match.candidates,
                 reason=match.reason,
             )
+            min_conf = self.config.unknown_min_confidence
+            if min_conf is not None and item.confidence < min_conf:
+                self._enqueue_unknown(
+                    domain=domain,
+                    raw=raw,
+                    confidence=item.confidence,
+                    reason="low_confidence",
+                    method=item.method,
+                    normalized_key=item.normalized_key,
+                )
+            return item
 
-        self._enqueue_unknown(domain, raw, 0.0)
+        self._enqueue_unknown(
+            domain=domain,
+            raw=raw,
+            confidence=0.0,
+            reason="no_dictionary_match",
+            method="unmapped",
+            normalized_key=None,
+        )
         return NormalizedItem(
             domain=domain,
             raw=raw,
@@ -224,7 +243,16 @@ class NormalizationEngine:
             candidates=[term.key],
         )
 
-    def _enqueue_unknown(self, domain: Domain, raw: str, confidence: float) -> None:
+    def _enqueue_unknown(
+        self,
+        *,
+        domain: Domain,
+        raw: str,
+        confidence: float,
+        reason: str,
+        method: Method,
+        normalized_key: str | None,
+    ) -> None:
         path_value = self.config.unknown_queue_path
         if not path_value:
             return
@@ -236,6 +264,9 @@ class NormalizationEngine:
             "domain": domain,
             "raw": raw,
             "confidence": confidence,
+            "reason": reason,
+            "method": method,
+            "normalized_key": normalized_key,
             "dictionary_version": self.config.dictionary_version,
         }
         with path.open("a", encoding="utf-8") as f:
@@ -248,6 +279,7 @@ def normalize_bean_info(
     dictionary_version: str = "v1",
     fuzzy_threshold: float = 0.86,
     unknown_queue_path: str | None = None,
+    unknown_min_confidence: float | None = None,
 ) -> NormalizedBeanInfo:
     """Normalize extracted BeanInfo using dictionary-based rules."""
 
@@ -256,6 +288,7 @@ def normalize_bean_info(
             dictionary_version=dictionary_version,
             fuzzy_threshold=fuzzy_threshold,
             unknown_queue_path=unknown_queue_path,
+            unknown_min_confidence=unknown_min_confidence,
         )
     )
     return engine.normalize_bean_info(bean)

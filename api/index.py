@@ -27,6 +27,13 @@ MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
 DICTIONARY_VERSION = os.getenv("DICTIONARY_VERSION", "v1")
 UNKNOWN_QUEUE_PATH = os.getenv("UNKNOWN_QUEUE_PATH")
+unknown_min_confidence_raw = os.getenv("UNKNOWN_QUEUE_MIN_CONFIDENCE")
+try:
+    UNKNOWN_QUEUE_MIN_CONFIDENCE = (
+        float(unknown_min_confidence_raw) if unknown_min_confidence_raw else None
+    )
+except ValueError:
+    UNKNOWN_QUEUE_MIN_CONFIDENCE = None
 
 app.add_middleware(
     CORSMiddleware,
@@ -108,6 +115,7 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
             extracted,
             dictionary_version=DICTIONARY_VERSION,
             unknown_queue_path=UNKNOWN_QUEUE_PATH,
+            unknown_min_confidence=UNKNOWN_QUEUE_MIN_CONFIDENCE,
         )
         return normalized
     except UnidentifiedImageError as exc:
