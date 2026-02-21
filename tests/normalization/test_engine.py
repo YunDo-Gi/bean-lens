@@ -124,6 +124,20 @@ def test_flavor_note_legacy_allows_semantic_alias():
     assert item.method == "alias"
 
 
+def test_flavor_note_splits_and_dedupes_multilingual_compound_values():
+    bean = BeanInfo(
+        flavor_notes=[
+            "적포도, 웰치스, 라벤더",
+            "Red-grape, Welch's, Lavender",
+        ]
+    )
+
+    result = normalize_bean_info(bean)
+
+    assert {item.normalized_key for item in result.flavor_notes} == {"red_grape", "welchs", "lavender"}
+    assert result.warnings == []
+
+
 def test_unmapped_writes_unknown_queue(tmp_path):
     queue_path = tmp_path / "unknown.jsonl"
     engine = NormalizationEngine(

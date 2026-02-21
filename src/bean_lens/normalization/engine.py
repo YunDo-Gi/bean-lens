@@ -159,7 +159,11 @@ class NormalizationEngine:
         deduped: list[NormalizedItem] = []
         seen: set[str] = set()
 
+        expanded_values: list[str] = []
         for raw in values:
+            expanded_values.extend(_split_multi_values(raw))
+
+        for raw in expanded_values:
             item = self.normalize_one(domain, raw)
             dedupe_key = item.normalized_key or _normalize_text(item.raw)
             if dedupe_key in seen:
@@ -387,3 +391,14 @@ def _normalize_text(value: str) -> str:
     text = re.sub(r"[^\w\s]", " ", text)
     text = re.sub(r"\s+", " ", text)
     return text
+
+
+def _split_multi_values(value: str) -> list[str]:
+    text = value.strip()
+    if not text:
+        return []
+
+    # OCR/LLM 결과에서 flavor/value가 한 줄로 합쳐지는 경우를 분해한다.
+    tokens = re.split(r"[,\n;/|·、]+", text)
+    items = [token.strip() for token in tokens if token.strip()]
+    return items or [text]
