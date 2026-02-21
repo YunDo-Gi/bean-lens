@@ -1,5 +1,6 @@
 import base64
 from io import BytesIO
+import logging
 import os
 from pathlib import Path
 import sys
@@ -20,6 +21,7 @@ from bean_lens.exceptions import AuthenticationError, ImageError, RateLimitError
 from bean_lens.normalization.types import NormalizedBeanInfo  # noqa: E402
 
 app = FastAPI(title="bean-lens API", version="1.0.0")
+logger = logging.getLogger(__name__)
 
 raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
@@ -141,4 +143,5 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
     except HTTPException:
         raise
     except Exception:
+        logger.exception("extract failed")
         raise HTTPException(status_code=500, detail="internal_error")
