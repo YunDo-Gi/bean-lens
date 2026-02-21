@@ -28,6 +28,7 @@ TERMS = [
     {"domain": "variety", "key": "geisha", "label_en": "Geisha", "label_ko": "게이샤"},
     {"domain": "variety", "key": "sl28", "label_en": "SL28", "label_ko": "SL28"},
     {"domain": "variety", "key": "bourbon", "label_en": "Bourbon", "label_ko": "버번"},
+    {"domain": "variety", "key": "castillo", "label_en": "Castillo", "label_ko": "카스티요"},
     {"domain": "variety", "key": "caturra", "label_en": "Caturra", "label_ko": "카투라"},
     {"domain": "variety", "key": "typica", "label_en": "Typica", "label_ko": "티피카"},
     {
@@ -39,6 +40,9 @@ TERMS = [
     {"domain": "flavor_note", "key": "jasmine", "label_en": "Jasmine", "label_ko": "자스민"},
     {"domain": "flavor_note", "key": "citrus", "label_en": "Citrus", "label_ko": "시트러스"},
     {"domain": "flavor_note", "key": "grape", "label_en": "Grape", "label_ko": "포도"},
+    {"domain": "flavor_note", "key": "red_grape", "label_en": "Red Grape", "label_ko": "적포도"},
+    {"domain": "flavor_note", "key": "welchs", "label_en": "Welch's", "label_ko": "웰치스"},
+    {"domain": "flavor_note", "key": "lavender", "label_en": "Lavender", "label_ko": "라벤더"},
     {"domain": "flavor_note", "key": "chocolate", "label_en": "Chocolate", "label_ko": "초콜릿"},
     {
         "domain": "flavor_note",

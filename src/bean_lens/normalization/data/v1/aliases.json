@@ -9,6 +9,27 @@
   {
     "domain": "process",
     "key": "washed",
+    "alias": "washed",
+    "match_type": "contains",
+    "priority": 40
+  },
+  {
+    "domain": "process",
+    "key": "washed",
+    "alias": "washed(infused)",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "process",
+    "key": "washed",
+    "alias": "washed infused",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "process",
+    "key": "washed",
     "alias": "워시드",
     "match_type": "exact",
     "priority": 10
@@ -176,6 +197,34 @@
   },
   {
     "domain": "roast_level",
+    "key": "medium_light",
+    "alias": "medium light roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium_light",
+    "alias": "medium-light roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium_light",
+    "alias": "midium light roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium_light",
+    "alias": "midium-light roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
     "key": "medium_dark",
     "alias": "medium dark",
     "match_type": "exact",
@@ -274,6 +323,13 @@
   },
   {
     "domain": "variety",
+    "key": "castillo",
+    "alias": "castillo",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "variety",
     "key": "bourbon",
     "alias": "red bourbon",
     "match_type": "contains",
@@ -291,12 +347,52 @@
     "key": "jasmine",
     "alias": "jasmin",
     "match_type": "exact",
-    "priority": 10
+    "priority": 10,
+    "alias_kind": "typo"
   },
   {
     "domain": "flavor_note",
     "key": "grape",
     "alias": "청포도",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_grape",
+    "alias": "red grape",
+    "match_type": "exact",
+    "priority": 10,
+    "alias_kind": "typo"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_grape",
+    "alias": "red-grape",
+    "match_type": "exact",
+    "priority": 10,
+    "alias_kind": "typo"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "welchs",
+    "alias": "welch's",
+    "match_type": "exact",
+    "priority": 20,
+    "alias_kind": "typo"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "welchs",
+    "alias": "welchs",
+    "match_type": "exact",
+    "priority": 20,
+    "alias_kind": "typo"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lavender",
+    "alias": "lavender",
     "match_type": "exact",
     "priority": 10
   },

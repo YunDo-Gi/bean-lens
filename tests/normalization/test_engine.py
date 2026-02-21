@@ -84,6 +84,46 @@ def test_normalize_flavor_note_fuzzy():
     assert result.flavor_notes[0].normalized_key == "jasmine"
 
 
+def test_normalize_realworld_colombia_label_values():
+    bean = BeanInfo(
+        process="Washed(infused)",
+        roast_level="Midium-Light Roast",
+        origin=Origin(country="COLOMBIA"),
+        variety=["Castillo"],
+        flavor_notes=["Red-grape", "Welch's", "Lavender"],
+    )
+
+    result = normalize_bean_info(bean)
+
+    assert result.process is not None
+    assert result.process.normalized_key == "washed"
+    assert result.roast_level is not None
+    assert result.roast_level.normalized_key == "medium_light"
+    assert result.country is not None
+    assert result.country.normalized_key == "CO"
+    assert [item.normalized_key for item in result.varieties] == ["castillo"]
+    assert {item.normalized_key for item in result.flavor_notes} == {"red_grape", "welchs", "lavender"}
+    assert result.warnings == []
+
+
+def test_flavor_note_strict_blocks_semantic_alias():
+    bean = BeanInfo(flavor_notes=["청포도"])
+
+    result = normalize_bean_info(bean)
+
+    assert len(result.flavor_notes) == 1
+    assert result.flavor_notes[0].method == "unmapped"
+
+
+def test_flavor_note_legacy_allows_semantic_alias():
+    engine = NormalizationEngine(config=NormalizationConfig(flavor_note_mode="legacy"))
+
+    item = engine.normalize_one("flavor_note", "청포도")
+
+    assert item.normalized_key == "grape"
+    assert item.method == "alias"
+
+
 def test_unmapped_writes_unknown_queue(tmp_path):
     queue_path = tmp_path / "unknown.jsonl"
     engine = NormalizationEngine(
@@ -115,6 +155,7 @@ def test_low_confidence_match_writes_unknown_queue(tmp_path):
         config=NormalizationConfig(
             unknown_queue_path=str(queue_path),
             fuzzy_threshold=0.7,
+            flavor_note_mode="legacy",
             unknown_min_confidence=0.9,
         )
     )

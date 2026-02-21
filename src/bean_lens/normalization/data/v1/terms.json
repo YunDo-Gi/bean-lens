@@ -133,6 +133,12 @@
   },
   {
     "domain": "variety",
+    "key": "castillo",
+    "label_en": "Castillo",
+    "label_ko": "카스티요"
+  },
+  {
+    "domain": "variety",
     "key": "caturra",
     "label_en": "Caturra",
     "label_ko": "카투라"
@@ -166,6 +172,24 @@
     "key": "grape",
     "label_en": "Grape",
     "label_ko": "포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_grape",
+    "label_en": "Red Grape",
+    "label_ko": "적포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "welchs",
+    "label_en": "Welch's",
+    "label_ko": "웰치스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lavender",
+    "label_en": "Lavender",
+    "label_ko": "라벤더"
   },
   {
     "domain": "flavor_note",

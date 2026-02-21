@@ -29,11 +29,13 @@ allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.s
 MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
 DICTIONARY_VERSION = os.getenv("DICTIONARY_VERSION", "v1")
+FLAVOR_NOTE_MODE = os.getenv("FLAVOR_NOTE_MODE", "strict")
 UNKNOWN_QUEUE_PATH = os.getenv("UNKNOWN_QUEUE_PATH")
 UNKNOWN_QUEUE_WEBHOOK_URL = os.getenv("UNKNOWN_QUEUE_WEBHOOK_URL")
 UNKNOWN_QUEUE_WEBHOOK_TOKEN = os.getenv("UNKNOWN_QUEUE_WEBHOOK_TOKEN")
 unknown_min_confidence_raw = os.getenv("UNKNOWN_QUEUE_MIN_CONFIDENCE")
 unknown_queue_webhook_timeout_raw = os.getenv("UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC")
+flavor_note_fuzzy_threshold_raw = os.getenv("FLAVOR_NOTE_FUZZY_THRESHOLD")
 try:
     UNKNOWN_QUEUE_MIN_CONFIDENCE = (
         float(unknown_min_confidence_raw) if unknown_min_confidence_raw else None
@@ -46,6 +48,12 @@ try:
     )
 except ValueError:
     UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC = 2.0
+try:
+    FLAVOR_NOTE_FUZZY_THRESHOLD = (
+        float(flavor_note_fuzzy_threshold_raw) if flavor_note_fuzzy_threshold_raw else 0.94
+    )
+except ValueError:
+    FLAVOR_NOTE_FUZZY_THRESHOLD = 0.94
 
 app.add_middleware(
     CORSMiddleware,
@@ -136,6 +144,8 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
         normalized = normalize_bean_info(
             extracted,
             dictionary_version=DICTIONARY_VERSION,
+            flavor_note_mode=FLAVOR_NOTE_MODE,
+            flavor_note_fuzzy_threshold=FLAVOR_NOTE_FUZZY_THRESHOLD,
             unknown_queue_path=UNKNOWN_QUEUE_PATH,
             unknown_min_confidence=UNKNOWN_QUEUE_MIN_CONFIDENCE,
             unknown_queue_webhook_url=UNKNOWN_QUEUE_WEBHOOK_URL,

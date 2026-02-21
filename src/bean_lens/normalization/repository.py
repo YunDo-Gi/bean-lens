@@ -25,6 +25,7 @@ class Alias:
     alias: str
     match_type: str
     priority: int
+    alias_kind: str = "semantic"
 
 
 class DictionaryRepository:

@@ -31,6 +31,8 @@ class MatchResult:
 class NormalizationConfig:
     dictionary_version: str = "v1"
     fuzzy_threshold: float = 0.86
+    flavor_note_mode: str = "strict"
+    flavor_note_fuzzy_threshold: float = 0.94
     unknown_queue_path: str | None = None
     unknown_min_confidence: float | None = None
     unknown_queue_webhook_url: str | None = None
@@ -88,13 +90,29 @@ class NormalizationEngine:
         if not value:
             return NormalizedItem(domain=domain, raw=raw, reason="empty_input")
 
-        match = (
-            self._match_exact(domain, value)
-            or self._match_alias(domain, value)
-            or self._match_regex(domain, value)
-            or self._match_contains(domain, value)
-            or self._match_fuzzy(domain, value)
-        )
+        if self._is_strict_flavor_note(domain):
+            match = (
+                self._match_exact(domain, value)
+                or self._match_alias(
+                    domain,
+                    value,
+                    allowed_match_types={"exact"},
+                    allowed_alias_kinds={"typo"},
+                )
+                or self._match_fuzzy(
+                    domain,
+                    value,
+                    threshold=self.config.flavor_note_fuzzy_threshold,
+                )
+            )
+        else:
+            match = (
+                self._match_exact(domain, value)
+                or self._match_alias(domain, value)
+                or self._match_regex(domain, value)
+                or self._match_contains(domain, value)
+                or self._match_fuzzy(domain, value)
+            )
 
         if match:
             item = NormalizedItem(
@@ -179,10 +197,23 @@ class NormalizationEngine:
                     )
         return None
 
-    def _match_alias(self, domain: Domain, raw: str) -> MatchResult | None:
+    def _match_alias(
+        self,
+        domain: Domain,
+        raw: str,
+        *,
+        allowed_match_types: set[str] | None = None,
+        allowed_alias_kinds: set[str] | None = None,
+    ) -> MatchResult | None:
         normalized_raw = _normalize_text(raw)
         aliases = sorted(
-            [a for a in self.repo.aliases_by_domain(domain) if a.match_type == "exact"],
+            [
+                a
+                for a in self.repo.aliases_by_domain(domain)
+                if a.match_type == "exact"
+                and (allowed_match_types is None or a.match_type in allowed_match_types)
+                and (allowed_alias_kinds is None or a.alias_kind in allowed_alias_kinds)
+            ],
             key=lambda item: item.priority,
         )
         for alias in aliases:
@@ -211,7 +242,13 @@ class NormalizationEngine:
                 return self._match_from_alias(alias, confidence=0.86, method="alias")
         return None
 
-    def _match_fuzzy(self, domain: Domain, raw: str) -> MatchResult | None:
+    def _match_fuzzy(
+        self,
+        domain: Domain,
+        raw: str,
+        *,
+        threshold: float | None = None,
+    ) -> MatchResult | None:
         normalized_raw = _normalize_text(raw)
         best_ratio = 0.0
         best_term: Term | None = None
@@ -223,7 +260,8 @@ class NormalizationEngine:
                     best_ratio = ratio
                     best_term = term
 
-        if best_term and best_ratio >= self.config.fuzzy_threshold:
+        resolved_threshold = threshold if threshold is not None else self.config.fuzzy_threshold
+        if best_term and best_ratio >= resolved_threshold:
             confidence = max(0.7, min(0.85, round(best_ratio, 2)))
             return MatchResult(
                 key=best_term.key,
@@ -235,6 +273,9 @@ class NormalizationEngine:
                 reason=f"fuzzy_score={best_ratio:.2f}",
             )
         return None
+
+    def _is_strict_flavor_note(self, domain: Domain) -> bool:
+        return domain == "flavor_note" and self.config.flavor_note_mode.lower() == "strict"
 
     def _match_from_alias(self, alias: Alias, confidence: float, method: Method) -> MatchResult:
         term = self._term_index[alias.domain][alias.key]
@@ -289,6 +330,8 @@ def normalize_bean_info(
     *,
     dictionary_version: str = "v1",
     fuzzy_threshold: float = 0.86,
+    flavor_note_mode: str = "strict",
+    flavor_note_fuzzy_threshold: float = 0.94,
     unknown_queue_path: str | None = None,
     unknown_min_confidence: float | None = None,
     unknown_queue_webhook_url: str | None = None,
@@ -301,6 +344,8 @@ def normalize_bean_info(
         config=NormalizationConfig(
             dictionary_version=dictionary_version,
             fuzzy_threshold=fuzzy_threshold,
+            flavor_note_mode=flavor_note_mode,
+            flavor_note_fuzzy_threshold=flavor_note_fuzzy_threshold,
             unknown_queue_path=unknown_queue_path,
             unknown_min_confidence=unknown_min_confidence,
             unknown_queue_webhook_url=unknown_queue_webhook_url,
