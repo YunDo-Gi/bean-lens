@@ -32,7 +32,27 @@ def test_normalize_roast_level_alias_city():
     result = normalize_bean_info(bean)
 
     assert result.roast_level is not None
-    assert result.roast_level.normalized_key == "light"
+    assert result.roast_level.normalized_key == "medium"
+    assert result.roast_level.method == "alias"
+
+
+def test_normalize_roast_level_medium_light():
+    bean = BeanInfo(roast_level="medium-light")
+
+    result = normalize_bean_info(bean)
+
+    assert result.roast_level is not None
+    assert result.roast_level.normalized_key == "medium_light"
+    assert result.roast_level.method in {"alias", "exact"}
+
+
+def test_normalize_roast_level_medium_dark():
+    bean = BeanInfo(roast_level="full city")
+
+    result = normalize_bean_info(bean)
+
+    assert result.roast_level is not None
+    assert result.roast_level.normalized_key == "medium_dark"
     assert result.roast_level.method == "alias"
 
 

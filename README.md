@@ -135,7 +135,7 @@ curl -X POST "http://localhost:8000/extract" \
   -d '{"imageBase64":"<base64-encoded-image>"}'
 ```
 
-Allowed image formats: `JPEG`, `PNG`, `WebP`, `MPO`
+Allowed upload MIME types (multipart): `image/jpeg`, `image/jpg`, `image/png`, `image/webp`
 
 ### Vercel deployment
 
@@ -157,10 +157,27 @@ Allowed image formats: `JPEG`, `PNG`, `WebP`, `MPO`
 | `origin` | Origin info (country, region, farm) |
 | `variety` | Coffee varieties (e.g., Geisha, Typica) |
 | `process` | Processing method (e.g., Washed, Natural) |
-| `roast_level` | Roast level (e.g., Light, Medium, Dark) |
+| `roast_level` | Roast level (e.g., Light, Medium-Light, Medium, Medium-Dark, Dark) |
 | `flavor_notes` | Flavor notes list |
 | `altitude` | Growing altitude |
 
 ## License
 
 MIT
+
+### Beanconqueror import workflow (dictionary expansion)
+
+To build candidate dictionary entries from Beanconqueror source:
+
+```bash
+python scripts/import_beanconqueror.py --source /path/to/Beanconqueror
+```
+
+Generated review files are written to `data/imports/beanconqueror/`:
+- `roast_aliases.json`
+- `flavor_terms.json`
+- `flavor_aliases.json`
+
+Review and selectively merge candidates into
+`src/bean_lens/normalization/data/v1/terms.py` and
+`src/bean_lens/normalization/data/v1/aliases.py`.

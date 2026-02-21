@@ -1,34 +1,182 @@
 [
-  {"domain": "process", "key": "washed", "label_en": "Washed", "label_ko": "워시드"},
-  {"domain": "process", "key": "natural", "label_en": "Natural", "label_ko": "내추럴"},
-  {"domain": "process", "key": "honey", "label_en": "Honey", "label_ko": "허니"},
-  {"domain": "process", "key": "anaerobic", "label_en": "Anaerobic", "label_ko": "혐기"},
-  {"domain": "process", "key": "wet_hulled", "label_en": "Wet Hulled", "label_ko": "습식 박피"},
-  {"domain": "process", "key": "carbonic_maceration", "label_en": "Carbonic Maceration", "label_ko": "탄산침용"},
-
-  {"domain": "roast_level", "key": "light", "label_en": "Light", "label_ko": "약배전"},
-  {"domain": "roast_level", "key": "medium", "label_en": "Medium", "label_ko": "중배전"},
-  {"domain": "roast_level", "key": "dark", "label_en": "Dark", "label_ko": "강배전"},
-
-  {"domain": "country", "key": "ET", "label_en": "Ethiopia", "label_ko": "에티오피아"},
-  {"domain": "country", "key": "CO", "label_en": "Colombia", "label_ko": "콜롬비아"},
-  {"domain": "country", "key": "BR", "label_en": "Brazil", "label_ko": "브라질"},
-  {"domain": "country", "key": "CR", "label_en": "Costa Rica", "label_ko": "코스타리카"},
-  {"domain": "country", "key": "GT", "label_en": "Guatemala", "label_ko": "과테말라"},
-  {"domain": "country", "key": "KE", "label_en": "Kenya", "label_ko": "케냐"},
-  {"domain": "country", "key": "HN", "label_en": "Honduras", "label_ko": "온두라스"},
-  {"domain": "country", "key": "ID", "label_en": "Indonesia", "label_ko": "인도네시아"},
-
-  {"domain": "variety", "key": "geisha", "label_en": "Geisha", "label_ko": "게이샤"},
-  {"domain": "variety", "key": "sl28", "label_en": "SL28", "label_ko": "SL28"},
-  {"domain": "variety", "key": "bourbon", "label_en": "Bourbon", "label_ko": "버번"},
-  {"domain": "variety", "key": "caturra", "label_en": "Caturra", "label_ko": "카투라"},
-  {"domain": "variety", "key": "typica", "label_en": "Typica", "label_ko": "티피카"},
-  {"domain": "variety", "key": "heirloom_ethiopia", "label_en": "Ethiopian Heirloom", "label_ko": "에티오피아 토종"},
-
-  {"domain": "flavor_note", "key": "jasmine", "label_en": "Jasmine", "label_ko": "자스민"},
-  {"domain": "flavor_note", "key": "citrus", "label_en": "Citrus", "label_ko": "시트러스"},
-  {"domain": "flavor_note", "key": "grape", "label_en": "Grape", "label_ko": "포도"},
-  {"domain": "flavor_note", "key": "chocolate", "label_en": "Chocolate", "label_ko": "초콜릿"},
-  {"domain": "flavor_note", "key": "stone_fruit", "label_en": "Stone Fruit", "label_ko": "핵과류"}
+  {
+    "domain": "process",
+    "key": "washed",
+    "label_en": "Washed",
+    "label_ko": "워시드"
+  },
+  {
+    "domain": "process",
+    "key": "natural",
+    "label_en": "Natural",
+    "label_ko": "내추럴"
+  },
+  {
+    "domain": "process",
+    "key": "honey",
+    "label_en": "Honey",
+    "label_ko": "허니"
+  },
+  {
+    "domain": "process",
+    "key": "anaerobic",
+    "label_en": "Anaerobic",
+    "label_ko": "혐기"
+  },
+  {
+    "domain": "process",
+    "key": "wet_hulled",
+    "label_en": "Wet Hulled",
+    "label_ko": "습식 박피"
+  },
+  {
+    "domain": "process",
+    "key": "carbonic_maceration",
+    "label_en": "Carbonic Maceration",
+    "label_ko": "탄산침용"
+  },
+  {
+    "domain": "roast_level",
+    "key": "light",
+    "label_en": "Light",
+    "label_ko": "약배전"
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium_light",
+    "label_en": "Medium-Light",
+    "label_ko": "중약배전"
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium",
+    "label_en": "Medium",
+    "label_ko": "중배전"
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium_dark",
+    "label_en": "Medium-Dark",
+    "label_ko": "중강배전"
+  },
+  {
+    "domain": "roast_level",
+    "key": "dark",
+    "label_en": "Dark",
+    "label_ko": "강배전"
+  },
+  {
+    "domain": "country",
+    "key": "ET",
+    "label_en": "Ethiopia",
+    "label_ko": "에티오피아"
+  },
+  {
+    "domain": "country",
+    "key": "CO",
+    "label_en": "Colombia",
+    "label_ko": "콜롬비아"
+  },
+  {
+    "domain": "country",
+    "key": "BR",
+    "label_en": "Brazil",
+    "label_ko": "브라질"
+  },
+  {
+    "domain": "country",
+    "key": "CR",
+    "label_en": "Costa Rica",
+    "label_ko": "코스타리카"
+  },
+  {
+    "domain": "country",
+    "key": "GT",
+    "label_en": "Guatemala",
+    "label_ko": "과테말라"
+  },
+  {
+    "domain": "country",
+    "key": "KE",
+    "label_en": "Kenya",
+    "label_ko": "케냐"
+  },
+  {
+    "domain": "country",
+    "key": "HN",
+    "label_en": "Honduras",
+    "label_ko": "온두라스"
+  },
+  {
+    "domain": "country",
+    "key": "ID",
+    "label_en": "Indonesia",
+    "label_ko": "인도네시아"
+  },
+  {
+    "domain": "variety",
+    "key": "geisha",
+    "label_en": "Geisha",
+    "label_ko": "게이샤"
+  },
+  {
+    "domain": "variety",
+    "key": "sl28",
+    "label_en": "SL28",
+    "label_ko": "SL28"
+  },
+  {
+    "domain": "variety",
+    "key": "bourbon",
+    "label_en": "Bourbon",
+    "label_ko": "버번"
+  },
+  {
+    "domain": "variety",
+    "key": "caturra",
+    "label_en": "Caturra",
+    "label_ko": "카투라"
+  },
+  {
+    "domain": "variety",
+    "key": "typica",
+    "label_en": "Typica",
+    "label_ko": "티피카"
+  },
+  {
+    "domain": "variety",
+    "key": "heirloom_ethiopia",
+    "label_en": "Ethiopian Heirloom",
+    "label_ko": "에티오피아 토종"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "jasmine",
+    "label_en": "Jasmine",
+    "label_ko": "자스민"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "citrus",
+    "label_en": "Citrus",
+    "label_ko": "시트러스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grape",
+    "label_en": "Grape",
+    "label_ko": "포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "chocolate",
+    "label_en": "Chocolate",
+    "label_ko": "초콜릿"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "stone_fruit",
+    "label_en": "Stone Fruit",
+    "label_ko": "핵과류"
+  }
 ]

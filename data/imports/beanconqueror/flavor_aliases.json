@@ -1,0 +1,835 @@
+[
+  {
+    "domain": "flavor_note",
+    "key": "lemon_and_lemonade",
+    "alias": "Lemon & lemonade",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lime",
+    "alias": "Lime",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grapefruit",
+    "alias": "Grapefruit",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "clementine",
+    "alias": "Clementine",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tangerine",
+    "alias": "Tangerine",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mandarin_orange",
+    "alias": "Mandarin orange",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "orange",
+    "alias": "Orange",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_apple",
+    "alias": "Green apple",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_apple",
+    "alias": "Red apple",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "watermelon",
+    "alias": "Watermelon",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honeydew",
+    "alias": "Honeydew",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cantaloupe",
+    "alias": "Cantaloupe",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_grape",
+    "alias": "White grape",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_grape",
+    "alias": "Green grape",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_grape",
+    "alias": "Red grape",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "concord_grape",
+    "alias": "Concord grape",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lychee",
+    "alias": "Lychee",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "star_fruit",
+    "alias": "Star fruit",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tamarind",
+    "alias": "Tamarind",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "passion_fruit",
+    "alias": "Passion fruit",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pineapple",
+    "alias": "Pineapple",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mango",
+    "alias": "Mango",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "papaya",
+    "alias": "Papaya",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "kiwi",
+    "alias": "Kiwi",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "banana",
+    "alias": "Banana",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "coconut",
+    "alias": "Coconut",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peach",
+    "alias": "Peach",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nectarine",
+    "alias": "Nectarine",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "apricot",
+    "alias": "Apricot",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "plum",
+    "alias": "Plum",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cherry",
+    "alias": "Cherry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_cherry",
+    "alias": "Black cherry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cranberry",
+    "alias": "Cranberry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "raspberry",
+    "alias": "Raspberry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "strawberry",
+    "alias": "Strawberry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "blueberry",
+    "alias": "Blueberry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_currant",
+    "alias": "Red currant",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_currant",
+    "alias": "Black currant",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "golden_raisin",
+    "alias": "Golden raisin",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "raisin",
+    "alias": "Raisin",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dried_fig",
+    "alias": "Dried fig",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dried_dates",
+    "alias": "Dried dates",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "prune",
+    "alias": "Prune",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cacao_nibs",
+    "alias": "Cacao nibs",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dark_chocolate",
+    "alias": "Dark chocolate",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bakers_chocolate",
+    "alias": "Bakers chocolate",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bittersweet_chocolate",
+    "alias": "Bittersweet chocolate",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cocoa_powder",
+    "alias": "Cocoa powder",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "milk_chocolate",
+    "alias": "Milk chocolate",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "walnut",
+    "alias": "Walnut",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peanut",
+    "alias": "Peanut",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cashew",
+    "alias": "Cashew",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pecan",
+    "alias": "Pecan",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hazelnut",
+    "alias": "Hazelnut",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "almond",
+    "alias": "Almond",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sweet_bread_pastery",
+    "alias": "Sweet bread pastery",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "granola",
+    "alias": "Granola",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "graham_cracker",
+    "alias": "Graham cracker",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rye",
+    "alias": "Rye",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "wheat",
+    "alias": "Wheat",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "barley",
+    "alias": "Barley",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fresh_bread",
+    "alias": "Fresh bread",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "vanila",
+    "alias": "Vanila",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nougat",
+    "alias": "Nougat",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honey",
+    "alias": "Honey",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "butter",
+    "alias": "Butter",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cream",
+    "alias": "Cream",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "marshallow",
+    "alias": "Marshallow",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sugar_cane",
+    "alias": "Sugar cane",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "brown_sugar",
+    "alias": "Brown sugar",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "caramel",
+    "alias": "Caramel",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "maple_syrup",
+    "alias": "Maple syrup",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "molasses",
+    "alias": "Molasses",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cola",
+    "alias": "Cola",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "toast",
+    "alias": "Toast",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "burnt_sugar",
+    "alias": "Burnt sugar",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "smokey",
+    "alias": "Smokey",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "carbon",
+    "alias": "Carbon",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_pepper",
+    "alias": "Black pepper",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_pepper",
+    "alias": "White pepper",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cinnamon",
+    "alias": "Cinnamon",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "coriander",
+    "alias": "Coriander",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "ginger",
+    "alias": "Ginger",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nutmeg",
+    "alias": "Nutmeg",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "curry",
+    "alias": "Curry",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "licorice_anise",
+    "alias": "Licorice-anise",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "clove",
+    "alias": "Clove",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "leathery",
+    "alias": "Leathery",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "meat_like",
+    "alias": "Meat-like",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "soy_sauce",
+    "alias": "Soy sauce",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sundried_tomato",
+    "alias": "Sundried tomato",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tomato",
+    "alias": "Tomato",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "soil",
+    "alias": "Soil",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fresh_wood",
+    "alias": "Fresh wood",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cedar",
+    "alias": "Cedar",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tobacco",
+    "alias": "Tobacco",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hay_straw",
+    "alias": "Hay / straw",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "leafy_greens",
+    "alias": "Leafy greens",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "olive",
+    "alias": "Olive",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_pepper",
+    "alias": "Green pepper",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "squash",
+    "alias": "Squash",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mushroom",
+    "alias": "Mushroom",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sweet_pea",
+    "alias": "Sweet pea",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "snow_pea",
+    "alias": "Snow pea",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grassy",
+    "alias": "Grassy",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dill",
+    "alias": "Dill",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sage",
+    "alias": "Sage",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mint",
+    "alias": "Mint",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_tea",
+    "alias": "Green tea",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_tea",
+    "alias": "Black tea",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hops",
+    "alias": "Hops",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bergamot",
+    "alias": "Bergamot",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hibiscus",
+    "alias": "Hibiscus",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rose_hips",
+    "alias": "Rose hips",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lavender",
+    "alias": "Lavender",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "magnolia",
+    "alias": "Magnolia",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "jasmine_honeysuckle",
+    "alias": "Jasmine honeysuckle",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "orange_blossom",
+    "alias": "Orange blossom",
+    "match_type": "exact",
+    "priority": 30
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lemongrass",
+    "alias": "Lemongrass",
+    "match_type": "exact",
+    "priority": 30
+  }
+]

@@ -1,0 +1,716 @@
+[
+  {
+    "domain": "flavor_note",
+    "key": "lemon_and_lemonade",
+    "label_en": "Lemon & lemonade",
+    "label_ko": "Lemon & lemonade"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lime",
+    "label_en": "Lime",
+    "label_ko": "Lime"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grapefruit",
+    "label_en": "Grapefruit",
+    "label_ko": "Grapefruit"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "clementine",
+    "label_en": "Clementine",
+    "label_ko": "Clementine"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tangerine",
+    "label_en": "Tangerine",
+    "label_ko": "Tangerine"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mandarin_orange",
+    "label_en": "Mandarin orange",
+    "label_ko": "Mandarin orange"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "orange",
+    "label_en": "Orange",
+    "label_ko": "Orange"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_apple",
+    "label_en": "Green apple",
+    "label_ko": "Green apple"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_apple",
+    "label_en": "Red apple",
+    "label_ko": "Red apple"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "watermelon",
+    "label_en": "Watermelon",
+    "label_ko": "Watermelon"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honeydew",
+    "label_en": "Honeydew",
+    "label_ko": "Honeydew"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cantaloupe",
+    "label_en": "Cantaloupe",
+    "label_ko": "Cantaloupe"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_grape",
+    "label_en": "White grape",
+    "label_ko": "White grape"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_grape",
+    "label_en": "Green grape",
+    "label_ko": "Green grape"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_grape",
+    "label_en": "Red grape",
+    "label_ko": "Red grape"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "concord_grape",
+    "label_en": "Concord grape",
+    "label_ko": "Concord grape"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lychee",
+    "label_en": "Lychee",
+    "label_ko": "Lychee"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "star_fruit",
+    "label_en": "Star fruit",
+    "label_ko": "Star fruit"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tamarind",
+    "label_en": "Tamarind",
+    "label_ko": "Tamarind"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "passion_fruit",
+    "label_en": "Passion fruit",
+    "label_ko": "Passion fruit"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pineapple",
+    "label_en": "Pineapple",
+    "label_ko": "Pineapple"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mango",
+    "label_en": "Mango",
+    "label_ko": "Mango"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "papaya",
+    "label_en": "Papaya",
+    "label_ko": "Papaya"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "kiwi",
+    "label_en": "Kiwi",
+    "label_ko": "Kiwi"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "banana",
+    "label_en": "Banana",
+    "label_ko": "Banana"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "coconut",
+    "label_en": "Coconut",
+    "label_ko": "Coconut"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peach",
+    "label_en": "Peach",
+    "label_ko": "Peach"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nectarine",
+    "label_en": "Nectarine",
+    "label_ko": "Nectarine"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "apricot",
+    "label_en": "Apricot",
+    "label_ko": "Apricot"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "plum",
+    "label_en": "Plum",
+    "label_ko": "Plum"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cherry",
+    "label_en": "Cherry",
+    "label_ko": "Cherry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_cherry",
+    "label_en": "Black cherry",
+    "label_ko": "Black cherry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cranberry",
+    "label_en": "Cranberry",
+    "label_ko": "Cranberry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "raspberry",
+    "label_en": "Raspberry",
+    "label_ko": "Raspberry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "strawberry",
+    "label_en": "Strawberry",
+    "label_ko": "Strawberry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "blueberry",
+    "label_en": "Blueberry",
+    "label_ko": "Blueberry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_currant",
+    "label_en": "Red currant",
+    "label_ko": "Red currant"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_currant",
+    "label_en": "Black currant",
+    "label_ko": "Black currant"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "golden_raisin",
+    "label_en": "Golden raisin",
+    "label_ko": "Golden raisin"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "raisin",
+    "label_en": "Raisin",
+    "label_ko": "Raisin"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dried_fig",
+    "label_en": "Dried fig",
+    "label_ko": "Dried fig"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dried_dates",
+    "label_en": "Dried dates",
+    "label_ko": "Dried dates"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "prune",
+    "label_en": "Prune",
+    "label_ko": "Prune"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cacao_nibs",
+    "label_en": "Cacao nibs",
+    "label_ko": "Cacao nibs"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dark_chocolate",
+    "label_en": "Dark chocolate",
+    "label_ko": "Dark chocolate"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bakers_chocolate",
+    "label_en": "Bakers chocolate",
+    "label_ko": "Bakers chocolate"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bittersweet_chocolate",
+    "label_en": "Bittersweet chocolate",
+    "label_ko": "Bittersweet chocolate"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cocoa_powder",
+    "label_en": "Cocoa powder",
+    "label_ko": "Cocoa powder"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "milk_chocolate",
+    "label_en": "Milk chocolate",
+    "label_ko": "Milk chocolate"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "walnut",
+    "label_en": "Walnut",
+    "label_ko": "Walnut"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peanut",
+    "label_en": "Peanut",
+    "label_ko": "Peanut"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cashew",
+    "label_en": "Cashew",
+    "label_ko": "Cashew"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pecan",
+    "label_en": "Pecan",
+    "label_ko": "Pecan"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hazelnut",
+    "label_en": "Hazelnut",
+    "label_ko": "Hazelnut"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "almond",
+    "label_en": "Almond",
+    "label_ko": "Almond"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sweet_bread_pastery",
+    "label_en": "Sweet bread pastery",
+    "label_ko": "Sweet bread pastery"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "granola",
+    "label_en": "Granola",
+    "label_ko": "Granola"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "graham_cracker",
+    "label_en": "Graham cracker",
+    "label_ko": "Graham cracker"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rye",
+    "label_en": "Rye",
+    "label_ko": "Rye"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "wheat",
+    "label_en": "Wheat",
+    "label_ko": "Wheat"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "barley",
+    "label_en": "Barley",
+    "label_ko": "Barley"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fresh_bread",
+    "label_en": "Fresh bread",
+    "label_ko": "Fresh bread"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "vanila",
+    "label_en": "Vanila",
+    "label_ko": "Vanila"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nougat",
+    "label_en": "Nougat",
+    "label_ko": "Nougat"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honey",
+    "label_en": "Honey",
+    "label_ko": "Honey"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "butter",
+    "label_en": "Butter",
+    "label_ko": "Butter"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cream",
+    "label_en": "Cream",
+    "label_ko": "Cream"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "marshallow",
+    "label_en": "Marshallow",
+    "label_ko": "Marshallow"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sugar_cane",
+    "label_en": "Sugar cane",
+    "label_ko": "Sugar cane"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "brown_sugar",
+    "label_en": "Brown sugar",
+    "label_ko": "Brown sugar"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "caramel",
+    "label_en": "Caramel",
+    "label_ko": "Caramel"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "maple_syrup",
+    "label_en": "Maple syrup",
+    "label_ko": "Maple syrup"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "molasses",
+    "label_en": "Molasses",
+    "label_ko": "Molasses"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cola",
+    "label_en": "Cola",
+    "label_ko": "Cola"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "toast",
+    "label_en": "Toast",
+    "label_ko": "Toast"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "burnt_sugar",
+    "label_en": "Burnt sugar",
+    "label_ko": "Burnt sugar"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "smokey",
+    "label_en": "Smokey",
+    "label_ko": "Smokey"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "carbon",
+    "label_en": "Carbon",
+    "label_ko": "Carbon"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_pepper",
+    "label_en": "Black pepper",
+    "label_ko": "Black pepper"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_pepper",
+    "label_en": "White pepper",
+    "label_ko": "White pepper"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cinnamon",
+    "label_en": "Cinnamon",
+    "label_ko": "Cinnamon"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "coriander",
+    "label_en": "Coriander",
+    "label_ko": "Coriander"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "ginger",
+    "label_en": "Ginger",
+    "label_ko": "Ginger"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nutmeg",
+    "label_en": "Nutmeg",
+    "label_ko": "Nutmeg"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "curry",
+    "label_en": "Curry",
+    "label_ko": "Curry"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "licorice_anise",
+    "label_en": "Licorice-anise",
+    "label_ko": "Licorice-anise"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "clove",
+    "label_en": "Clove",
+    "label_ko": "Clove"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "leathery",
+    "label_en": "Leathery",
+    "label_ko": "Leathery"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "meat_like",
+    "label_en": "Meat-like",
+    "label_ko": "Meat-like"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "soy_sauce",
+    "label_en": "Soy sauce",
+    "label_ko": "Soy sauce"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sundried_tomato",
+    "label_en": "Sundried tomato",
+    "label_ko": "Sundried tomato"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tomato",
+    "label_en": "Tomato",
+    "label_ko": "Tomato"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "soil",
+    "label_en": "Soil",
+    "label_ko": "Soil"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fresh_wood",
+    "label_en": "Fresh wood",
+    "label_ko": "Fresh wood"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cedar",
+    "label_en": "Cedar",
+    "label_ko": "Cedar"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tobacco",
+    "label_en": "Tobacco",
+    "label_ko": "Tobacco"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hay_straw",
+    "label_en": "Hay / straw",
+    "label_ko": "Hay / straw"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "leafy_greens",
+    "label_en": "Leafy greens",
+    "label_ko": "Leafy greens"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "olive",
+    "label_en": "Olive",
+    "label_ko": "Olive"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_pepper",
+    "label_en": "Green pepper",
+    "label_ko": "Green pepper"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "squash",
+    "label_en": "Squash",
+    "label_ko": "Squash"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mushroom",
+    "label_en": "Mushroom",
+    "label_ko": "Mushroom"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sweet_pea",
+    "label_en": "Sweet pea",
+    "label_ko": "Sweet pea"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "snow_pea",
+    "label_en": "Snow pea",
+    "label_ko": "Snow pea"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grassy",
+    "label_en": "Grassy",
+    "label_ko": "Grassy"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dill",
+    "label_en": "Dill",
+    "label_ko": "Dill"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sage",
+    "label_en": "Sage",
+    "label_ko": "Sage"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mint",
+    "label_en": "Mint",
+    "label_ko": "Mint"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_tea",
+    "label_en": "Green tea",
+    "label_ko": "Green tea"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_tea",
+    "label_en": "Black tea",
+    "label_ko": "Black tea"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hops",
+    "label_en": "Hops",
+    "label_ko": "Hops"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bergamot",
+    "label_en": "Bergamot",
+    "label_ko": "Bergamot"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hibiscus",
+    "label_en": "Hibiscus",
+    "label_ko": "Hibiscus"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rose_hips",
+    "label_en": "Rose hips",
+    "label_ko": "Rose hips"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lavender",
+    "label_en": "Lavender",
+    "label_ko": "Lavender"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "magnolia",
+    "label_en": "Magnolia",
+    "label_ko": "Magnolia"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "jasmine_honeysuckle",
+    "label_en": "Jasmine honeysuckle",
+    "label_ko": "Jasmine honeysuckle"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "orange_blossom",
+    "label_en": "Orange blossom",
+    "label_ko": "Orange blossom"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lemongrass",
+    "label_en": "Lemongrass",
+    "label_ko": "Lemongrass"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "domain": "roast_level",
+    "key": "light",
+    "alias": "Cinnamon Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "light",
+    "alias": "American Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "light",
+    "alias": "New England Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "light",
+    "alias": "Half City Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "light",
+    "alias": "Moderate-Light Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium",
+    "alias": "City roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium",
+    "alias": "City+ Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "medium",
+    "alias": "Full City Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "dark",
+    "alias": "Full City + Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "dark",
+    "alias": "Italian Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "dark",
+    "alias": "Vienna Roast",
+    "match_type": "exact",
+    "priority": 25
+  },
+  {
+    "domain": "roast_level",
+    "key": "dark",
+    "alias": "French Roast",
+    "match_type": "exact",
+    "priority": 25
+  }
+]

@@ -27,7 +27,7 @@ Return a JSON object with these fields (use null for missing information):
   },
   "variety": ["List of coffee varieties, e.g., Geisha, Typica, SL28"],
   "process": "Processing method (e.g., Washed, Natural, Honey)",
-  "roast_level": "Roast level (e.g., Light, Medium, Dark)",
+  "roast_level": "Roast level (e.g., Light, Medium-Light, Medium, Medium-Dark, Dark)",
   "flavor_notes": ["List of flavor notes, e.g., Citrus, Jasmine, Chocolate"],
   "altitude": "Growing altitude (e.g., 1800-2000m)"
 }

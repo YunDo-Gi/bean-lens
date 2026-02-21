@@ -24,8 +24,7 @@ app = FastAPI(title="bean-lens API", version="1.0.0")
 raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
-ALLOWED_MIME_TYPES = {"image/jpeg", "image/png", "image/webp"}
-ALLOWED_PIL_FORMATS = {"JPEG", "PNG", "WEBP", "MPO"}
+ALLOWED_MIME_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
 
 app.add_middleware(
     CORSMiddleware,
@@ -102,8 +101,6 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
 
     try:
         pil_image = Image.open(BytesIO(payload))
-        if (pil_image.format or "").upper() not in ALLOWED_PIL_FORMATS:
-            raise HTTPException(status_code=400, detail="unsupported image format")
         return extract(pil_image)
     except UnidentifiedImageError as exc:
         raise HTTPException(status_code=400, detail="invalid image format") from exc
