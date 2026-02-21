@@ -240,6 +240,7 @@ Receiver environment variables:
 ```bash
 export UNKNOWN_QUEUE_RECEIVER_DB_PATH=./data/unknown_queue_events.db
 export UNKNOWN_QUEUE_RECEIVER_TOKEN=your-shared-token
+export UNKNOWN_QUEUE_RECEIVER_DB_PATH=/tmp/unknown_queue_events.db
 ```
 
 Then configure bean-lens API:

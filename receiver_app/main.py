@@ -14,7 +14,7 @@ from pathlib import Path
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from pydantic import BaseModel, Field
 
-DB_PATH = os.getenv("UNKNOWN_QUEUE_RECEIVER_DB_PATH", "./data/unknown_queue_events.db")
+DB_PATH = os.getenv("UNKNOWN_QUEUE_RECEIVER_DB_PATH", "/tmp/unknown_queue_events.db")
 WEBHOOK_TOKEN = os.getenv("UNKNOWN_QUEUE_RECEIVER_TOKEN")
 
 app = FastAPI(title="Unknown Queue Receiver", version="1.0.0")
