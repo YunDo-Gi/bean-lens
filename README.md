@@ -146,6 +146,23 @@ export UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC=2.0
 export UNKNOWN_QUEUE_WEBHOOK_TOKEN=your-shared-token
 ```
 
+Optional extraction logging / image storage:
+
+```bash
+export SAVE_REQUEST_LOG=true
+export EXTRACTION_LOG_DATABASE_URL=postgresql://<user>:<password>@<host>:<port>/<db>?sslmode=require
+export EXTRACTION_LOG_TABLE=extract_logs
+export SAVE_IMAGE_ON_WARNING=true
+export SAVE_IMAGE_SAMPLE_RATE=0.05
+export SAVE_IMAGE_ON_ERROR=true
+export STORAGE_BACKEND=supabase
+export SUPABASE_URL=https://<project-ref>.supabase.co
+export SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
+export SUPABASE_BUCKET=bean-lens-images
+```
+
+When enabled, API writes request/result logs to `extract_logs` and conditionally stores images.
+
 3. Run FastAPI locally:
 
 ```bash
@@ -179,6 +196,11 @@ Allowed upload MIME types (multipart): `image/jpeg`, `image/jpg`, `image/png`, `
    - `BEAN_LENS_PROVIDER` (`gemini` or `ocr`)
    - `GOOGLE_APPLICATION_CREDENTIALS_JSON` (when `BEAN_LENS_PROVIDER=ocr`)
    - `FRONTEND_ORIGINS` (example: `https://your-frontend-domain.com`)
+   - Optional logging:
+     - `SAVE_REQUEST_LOG=true`
+     - `EXTRACTION_LOG_DATABASE_URL` (or `DATABASE_URL`)
+     - `STORAGE_BACKEND=supabase`
+     - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_BUCKET`
 3. Deploy. (Configuration is already defined in `vercel.json`.)
 4. Verify:
    - `https://<your-vercel-domain>/health`

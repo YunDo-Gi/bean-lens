@@ -9,6 +9,7 @@ from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, UnidentifiedImageError
 from pydantic import BaseModel
+from api.extraction_logging import ExtractionLogger, ExtractionLoggingConfig
 
 # Ensure local src package is importable in serverless runtime.
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +24,7 @@ from bean_lens.normalization.types import NormalizedBeanInfo  # noqa: E402
 
 app = FastAPI(title="bean-lens API", version="1.0.0")
 logger = logging.getLogger(__name__)
+EXTRACTION_LOGGER = ExtractionLogger(ExtractionLoggingConfig.from_env())
 
 raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
@@ -121,6 +123,10 @@ def _decode_base64_image(image_base64: str) -> bytes:
 
 @app.post("/extract", response_model=ExtractResponse)
 async def extract_bean_info(request: Request, image: UploadFile | None = File(default=None)) -> ExtractResponse:
+    request_id = EXTRACTION_LOGGER.new_request_id()
+    extraction_metadata: dict[str, str] = {}
+    payload: bytes | None = None
+    effective_content_type: str | None = None
     content_type = request.headers.get("content-type", "")
 
     if content_type.startswith("application/json"):
@@ -129,6 +135,7 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
         except Exception as exc:
             raise HTTPException(status_code=400, detail="imageBase64 is required in JSON body") from exc
         payload = _decode_base64_image(body.imageBase64)
+        effective_content_type = "application/octet-stream"
     else:
         if image is None:
             raise HTTPException(status_code=400, detail="image file is required")
@@ -137,6 +144,7 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
         if not payload:
             raise HTTPException(status_code=400, detail="empty file")
         _validate_payload_size(payload)
+        effective_content_type = (image.content_type or "").split(";")[0].strip().lower()
 
     try:
         pil_image = Image.open(BytesIO(payload))
@@ -151,6 +159,15 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
             unknown_queue_webhook_url=UNKNOWN_QUEUE_WEBHOOK_URL,
             unknown_queue_webhook_timeout_sec=UNKNOWN_QUEUE_WEBHOOK_TIMEOUT_SEC,
             unknown_queue_webhook_token=UNKNOWN_QUEUE_WEBHOOK_TOKEN,
+        )
+        EXTRACTION_LOGGER.log_success(
+            request_id=request_id,
+            payload=payload,
+            content_type=effective_content_type or "application/octet-stream",
+            extracted=extracted.model_dump(),
+            normalized=normalized.model_dump(),
+            extraction_metadata=extraction_metadata,
+            warnings=normalized.warnings,
         )
         return ExtractResponse(
             normalized=normalized,
@@ -169,6 +186,13 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except HTTPException:
         raise
-    except Exception:
+    except Exception as exc:
+        EXTRACTION_LOGGER.log_error(
+            request_id=request_id,
+            payload=payload,
+            content_type=effective_content_type,
+            extraction_metadata=extraction_metadata,
+            error_detail=str(exc),
+        )
         logger.exception("extract failed")
         raise HTTPException(status_code=500, detail="internal_error")

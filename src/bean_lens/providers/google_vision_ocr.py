@@ -52,6 +52,7 @@ class GoogleVisionOCRProvider(BaseProvider):
     ):
         self.logger = logging.getLogger(__name__)
         self._last_parser = "ocr_heuristic"
+        self._last_raw_text = ""
         self.llm_model = llm_model or os.getenv("OCR_TEXT_LLM_MODEL", "gemini-2.5-flash-lite")
         enabled = (
             llm_enabled
@@ -162,6 +163,7 @@ class GoogleVisionOCRProvider(BaseProvider):
                 pil_image.save(buffer, format=fmt)
                 content = buffer.getvalue()
             raw_text = self._extract_text(content)
+            self._last_raw_text = raw_text
             if self.llm_enabled and self.llm_client and raw_text:
                 try:
                     result = self._extract_structured_with_llm(raw_text)
@@ -238,7 +240,11 @@ OCR text:
         return BeanInfo.model_validate_json(response.text)
 
     def get_extraction_metadata(self) -> dict[str, str]:
-        return {"provider": "ocr", "parser": self._last_parser}
+        return {
+            "provider": "ocr",
+            "parser": self._last_parser,
+            "ocr_text": self._last_raw_text,
+        }
 
 
 def _extract_labeled_value(lines: list[str], labels: list[str]) -> str | None:
