@@ -1,9 +1,11 @@
 import base64
 from functools import lru_cache
 from io import BytesIO
+import json
 import logging
 import os
 from pathlib import Path
+import re
 import sys
 
 from fastapi import FastAPI, File, HTTPException, Query, Request, Response, UploadFile
@@ -28,6 +30,7 @@ app = FastAPI(title="bean-lens API", version="1.0.0")
 logger = logging.getLogger(__name__)
 EXTRACTION_LOGGER = ExtractionLogger(ExtractionLoggingConfig.from_env())
 VALID_DICTIONARY_DOMAINS = ("process", "roast_level", "country", "variety", "flavor_note")
+SAFE_YAML_KEY = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
@@ -107,6 +110,52 @@ class DictionaryLatestResponse(BaseModel):
     options_url: str
 
 
+def _yaml_scalar(value: object) -> str:
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, (int, float)):
+        return str(value)
+    if isinstance(value, str):
+        return json.dumps(value, ensure_ascii=False)
+    return json.dumps(value, ensure_ascii=False)
+
+
+def _yaml_key(key: str) -> str:
+    return key if SAFE_YAML_KEY.match(key) else json.dumps(key, ensure_ascii=False)
+
+
+def _dump_yaml(value: object, indent: int = 0) -> list[str]:
+    prefix = "  " * indent
+    if isinstance(value, dict):
+        if not value:
+            return [f"{prefix}{{}}"]
+        lines: list[str] = []
+        for k, v in value.items():
+            key = _yaml_key(str(k))
+            if isinstance(v, (dict, list)):
+                lines.append(f"{prefix}{key}:")
+                lines.extend(_dump_yaml(v, indent + 1))
+            else:
+                lines.append(f"{prefix}{key}: {_yaml_scalar(v)}")
+        return lines
+
+    if isinstance(value, list):
+        if not value:
+            return [f"{prefix}[]"]
+        lines = []
+        for item in value:
+            if isinstance(item, (dict, list)):
+                lines.append(f"{prefix}-")
+                lines.extend(_dump_yaml(item, indent + 1))
+            else:
+                lines.append(f"{prefix}- {_yaml_scalar(item)}")
+        return lines
+
+    return [f"{prefix}{_yaml_scalar(value)}"]
+
+
 @lru_cache(maxsize=8)
 def _load_dictionary_options(version: str) -> list[DictionaryOption]:
     repo = DictionaryRepository(version=version)
@@ -166,6 +215,13 @@ def dictionary_latest(response: Response) -> DictionaryLatestResponse:
         latest=DICTIONARY_VERSION,
         options_url=f"/dictionary/{DICTIONARY_VERSION}/options",
     )
+
+
+@app.get("/openapi.yaml", include_in_schema=False)
+def openapi_yaml() -> Response:
+    schema = app.openapi()
+    body = "\n".join(_dump_yaml(schema)) + "\n"
+    return Response(content=body, media_type="application/yaml")
 
 
 @app.get("/dictionary/{version}/options", response_model=DictionaryOptionsResponse)

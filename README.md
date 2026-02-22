@@ -98,6 +98,7 @@ This repository can be deployed as a Python API on Vercel.
 ### Endpoints
 
 - `GET /health`: health check
+- `GET /openapi.yaml`: OpenAPI schema in YAML format
 - `GET /dictionary/latest`: latest dictionary version pointer
 - `GET /dictionary/{version}/options`: dictionary terms for UI options
   - Optional query: `domain` (`process`, `roast_level`, `country`, `variety`, `flavor_note`)
