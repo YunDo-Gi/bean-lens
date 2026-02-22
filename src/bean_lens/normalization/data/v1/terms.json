@@ -199,6 +199,1104 @@
   },
   {
     "domain": "flavor_note",
+    "key": "cherry",
+    "label_en": "Cherry",
+    "label_ko": "체리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "berry",
+    "label_en": "Berry",
+    "label_ko": "베리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "blueberry",
+    "label_en": "Blueberry",
+    "label_ko": "블루베리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "raspberry",
+    "label_en": "Raspberry",
+    "label_ko": "라즈베리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "strawberry",
+    "label_en": "Strawberry",
+    "label_ko": "딸기"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "apple",
+    "label_en": "Apple",
+    "label_ko": "사과"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "plum",
+    "label_en": "Plum",
+    "label_ko": "자두"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peach",
+    "label_en": "Peach",
+    "label_ko": "복숭아"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "apricot",
+    "label_en": "Apricot",
+    "label_ko": "살구"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mango",
+    "label_en": "Mango",
+    "label_ko": "망고"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pineapple",
+    "label_en": "Pineapple",
+    "label_ko": "파인애플"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "passion_fruit",
+    "label_en": "Passion Fruit",
+    "label_ko": "패션프루트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lemon",
+    "label_en": "Lemon",
+    "label_ko": "레몬"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "orange",
+    "label_en": "Orange",
+    "label_ko": "오렌지"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grapefruit",
+    "label_en": "Grapefruit",
+    "label_ko": "자몽"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lime",
+    "label_en": "Lime",
+    "label_ko": "라임"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "key_lime",
+    "label_en": "Key Lime",
+    "label_ko": "키라임"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "floral",
+    "label_en": "Floral",
+    "label_ko": "플로럴"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rose",
+    "label_en": "Rose",
+    "label_ko": "장미"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rosewater",
+    "label_en": "Rosewater",
+    "label_ko": "로즈워터"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hibiscus",
+    "label_en": "Hibiscus",
+    "label_ko": "히비스커스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "magnolia",
+    "label_en": "Magnolia",
+    "label_ko": "목련"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honeysuckle",
+    "label_en": "Honeysuckle",
+    "label_ko": "인동꽃"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "chamomile",
+    "label_en": "Chamomile",
+    "label_ko": "캐모마일"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lemongrass",
+    "label_en": "Lemongrass",
+    "label_ko": "레몬그라스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "orange_blossom",
+    "label_en": "Orange Blossom",
+    "label_ko": "오렌지블로섬"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "earl_grey",
+    "label_en": "Earl Grey",
+    "label_ko": "얼그레이"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_apple",
+    "label_en": "Green Apple",
+    "label_ko": "청사과"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "red_apple",
+    "label_en": "Red Apple",
+    "label_ko": "붉은사과"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_grape",
+    "label_en": "White Grape",
+    "label_ko": "백포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_grape",
+    "label_en": "Green Grape",
+    "label_ko": "청포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_grape",
+    "label_en": "Black Grape",
+    "label_ko": "흑포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nectarine",
+    "label_en": "Nectarine",
+    "label_ko": "천도복숭아"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "watermelon",
+    "label_en": "Watermelon",
+    "label_ko": "수박"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honeydew",
+    "label_en": "Honeydew",
+    "label_ko": "허니듀"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cantaloupe",
+    "label_en": "Cantaloupe",
+    "label_ko": "캔탈루프"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "papaya",
+    "label_en": "Papaya",
+    "label_ko": "파파야"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "raisin",
+    "label_en": "Raisin",
+    "label_ko": "건포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "prune",
+    "label_en": "Prune",
+    "label_ko": "푸룬"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fig",
+    "label_en": "Fig",
+    "label_ko": "무화과"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "date",
+    "label_en": "Date",
+    "label_ko": "대추야자"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "caramel",
+    "label_en": "Caramel",
+    "label_ko": "카라멜"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "caramelized_sugar",
+    "label_en": "Caramelized Sugar",
+    "label_ko": "카라멜라이즈드슈가"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "honey",
+    "label_en": "Honey",
+    "label_ko": "허니"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "brown_sugar",
+    "label_en": "Brown Sugar",
+    "label_ko": "브라운슈가"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "maple_syrup",
+    "label_en": "Maple Syrup",
+    "label_ko": "메이플시럽"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "vanilla",
+    "label_en": "Vanilla",
+    "label_ko": "바닐라"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sugarcane",
+    "label_en": "Sugarcane",
+    "label_ko": "사탕수수"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nougat",
+    "label_en": "Nougat",
+    "label_ko": "누가"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dark_chocolate",
+    "label_en": "Dark Chocolate",
+    "label_ko": "다크초콜릿"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "milk_chocolate",
+    "label_en": "Milk Chocolate",
+    "label_ko": "밀크초콜릿"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cocoa",
+    "label_en": "Cocoa",
+    "label_ko": "코코아"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "almond",
+    "label_en": "Almond",
+    "label_ko": "아몬드"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hazelnut",
+    "label_en": "Hazelnut",
+    "label_ko": "헤이즐넛"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pecan",
+    "label_en": "Pecan",
+    "label_ko": "피칸"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peanut",
+    "label_en": "Peanut",
+    "label_ko": "피넛"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "walnut",
+    "label_en": "Walnut",
+    "label_ko": "호두"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nutty",
+    "label_en": "Nutty",
+    "label_ko": "견과류"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "spicy",
+    "label_en": "Spicy",
+    "label_ko": "스파이시"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cinnamon",
+    "label_en": "Cinnamon",
+    "label_ko": "시나몬"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "clove",
+    "label_en": "Clove",
+    "label_ko": "클로브"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "nutmeg",
+    "label_en": "Nutmeg",
+    "label_ko": "넛맥"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "anise",
+    "label_en": "Anise",
+    "label_ko": "아니스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pepper",
+    "label_en": "Pepper",
+    "label_ko": "후추"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "ginger",
+    "label_en": "Ginger",
+    "label_ko": "생강"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "roasty",
+    "label_en": "Roasty",
+    "label_ko": "로스티"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "smoky",
+    "label_en": "Smoky",
+    "label_ko": "스모키"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "malt",
+    "label_en": "Malt",
+    "label_ko": "맥아"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cocoa_nibs",
+    "label_en": "Cocoa Nibs",
+    "label_ko": "코코아닙스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "toast",
+    "label_en": "Toast",
+    "label_ko": "토스트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "earthy",
+    "label_en": "Earthy",
+    "label_ko": "흙냄새"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tobacco",
+    "label_en": "Tobacco",
+    "label_ko": "담배"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "woody",
+    "label_en": "Woody",
+    "label_ko": "나무"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "blood_orange",
+    "label_en": "Blood Orange",
+    "label_ko": "블러드오렌지"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "clementine",
+    "label_en": "Clementine",
+    "label_ko": "클레멘타인"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "asian_pear",
+    "label_en": "Asian Pear",
+    "label_ko": "아시안페어"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "concord_grape",
+    "label_en": "Concord Grape",
+    "label_ko": "콩코드포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "coconut",
+    "label_en": "Coconut",
+    "label_ko": "코코넛"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "banana",
+    "label_en": "Banana",
+    "label_ko": "바나나"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "kiwi",
+    "label_en": "Kiwi",
+    "label_ko": "키위"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tamarind",
+    "label_en": "Tamarind",
+    "label_ko": "타마린드"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "star_fruit",
+    "label_en": "Star Fruit",
+    "label_ko": "스타프루트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "lychee",
+    "label_en": "Lychee",
+    "label_ko": "리치"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_cherry",
+    "label_en": "Black Cherry",
+    "label_ko": "블랙체리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "currant",
+    "label_en": "Currant",
+    "label_ko": "커런트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "blackberry",
+    "label_en": "Blackberry",
+    "label_ko": "블랙베리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cranberry",
+    "label_en": "Cranberry",
+    "label_ko": "크랜베리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dried_date",
+    "label_en": "Dried Date",
+    "label_ko": "건대추야자"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dried_fig",
+    "label_en": "Dried Fig",
+    "label_ko": "건무화과"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "golden_raisin",
+    "label_en": "Golden Raisin",
+    "label_ko": "골든건포도"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_chocolate",
+    "label_en": "White Chocolate",
+    "label_ko": "화이트초콜릿"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bittersweet_chocolate",
+    "label_en": "Bittersweet Chocolate",
+    "label_ko": "비터스위트초콜릿"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bakers_chocolate",
+    "label_en": "Baker's Chocolate",
+    "label_ko": "베이커즈초콜릿"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cola",
+    "label_en": "Cola",
+    "label_ko": "콜라"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "molasses",
+    "label_en": "Molasses",
+    "label_ko": "몰라세스"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "simple_syrup",
+    "label_en": "Simple Syrup",
+    "label_ko": "심플시럽"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cane_sugar",
+    "label_en": "Cane Sugar",
+    "label_ko": "케인슈거"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "marshmallow",
+    "label_en": "Marshmallow",
+    "label_ko": "마시멜로"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cream",
+    "label_en": "Cream",
+    "label_ko": "크림"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "butter",
+    "label_en": "Butter",
+    "label_ko": "버터"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "marzipan",
+    "label_en": "Marzipan",
+    "label_ko": "마지팬"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cashew",
+    "label_en": "Cashew",
+    "label_ko": "캐슈"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fresh_bread",
+    "label_en": "Fresh Bread",
+    "label_ko": "갓구운빵"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "barley",
+    "label_en": "Barley",
+    "label_ko": "보리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "wheat",
+    "label_en": "Wheat",
+    "label_ko": "밀"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rye",
+    "label_en": "Rye",
+    "label_ko": "호밀"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "graham_cracker",
+    "label_en": "Graham Cracker",
+    "label_ko": "그레이엄크래커"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "toasted_oats",
+    "label_en": "Toasted Oats",
+    "label_ko": "토스티드오트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pastry",
+    "label_en": "Pastry",
+    "label_ko": "페이스트리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "popcorn",
+    "label_en": "Popcorn",
+    "label_ko": "팝콘"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "carbon",
+    "label_en": "Carbon",
+    "label_ko": "탄맛"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "burnt_sugar",
+    "label_en": "Burnt Sugar",
+    "label_ko": "탄설탕"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "licorice",
+    "label_en": "Licorice",
+    "label_ko": "감초"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cumin",
+    "label_en": "Cumin",
+    "label_ko": "큐민"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "coriander",
+    "label_en": "Coriander",
+    "label_ko": "코리앤더"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "white_pepper",
+    "label_en": "White Pepper",
+    "label_ko": "화이트페퍼"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_pepper",
+    "label_en": "Black Pepper",
+    "label_ko": "블랙페퍼"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sundried_tomato",
+    "label_en": "Sundried Tomato",
+    "label_ko": "선드라이드토마토"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "soy_sauce",
+    "label_en": "Soy Sauce",
+    "label_ko": "간장"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "meat_like",
+    "label_en": "Meat-like",
+    "label_ko": "고기향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "leathery",
+    "label_en": "Leathery",
+    "label_ko": "가죽향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hops",
+    "label_en": "Hops",
+    "label_ko": "홉"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "black_tea",
+    "label_en": "Black Tea",
+    "label_ko": "홍차"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_tea",
+    "label_en": "Green Tea",
+    "label_ko": "녹차"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mint",
+    "label_en": "Mint",
+    "label_ko": "민트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "sage",
+    "label_en": "Sage",
+    "label_ko": "세이지"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dill",
+    "label_en": "Dill",
+    "label_ko": "딜"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "tomato",
+    "label_en": "Tomato",
+    "label_ko": "토마토"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "carrot",
+    "label_en": "Carrot",
+    "label_ko": "당근"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "mushroom",
+    "label_en": "Mushroom",
+    "label_ko": "버섯"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "green_pepper",
+    "label_en": "Green Pepper",
+    "label_ko": "피망"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "olive",
+    "label_en": "Olive",
+    "label_ko": "올리브"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "straw",
+    "label_en": "Straw",
+    "label_ko": "건초"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "leafy_greens",
+    "label_en": "Leafy Greens",
+    "label_ko": "잎채소"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cedar",
+    "label_en": "Cedar",
+    "label_ko": "시더"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "wood",
+    "label_en": "Wood",
+    "label_ko": "나무"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "soil",
+    "label_en": "Soil",
+    "label_ko": "흙"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bergamot",
+    "label_en": "Bergamot",
+    "label_ko": "베르가못"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pomegranate",
+    "label_en": "Pomegranate",
+    "label_ko": "석류"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pear",
+    "label_en": "Pear",
+    "label_ko": "배"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "acetic_acid",
+    "label_en": "Acetic Acid",
+    "label_ko": "초산"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "butyric_acid",
+    "label_en": "Butyric Acid",
+    "label_ko": "부티르산"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "isovaleric_acid",
+    "label_en": "Isovaleric Acid",
+    "label_ko": "이소발레르산"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "citric_acid",
+    "label_en": "Citric Acid",
+    "label_ko": "구연산"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "malic_acid",
+    "label_en": "Malic Acid",
+    "label_ko": "사과산"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "winey",
+    "label_en": "Winey",
+    "label_ko": "와인향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "whiskey",
+    "label_en": "Whiskey",
+    "label_ko": "위스키"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fermented",
+    "label_en": "Fermented",
+    "label_ko": "발효취"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "overripe",
+    "label_en": "Overripe",
+    "label_ko": "과숙"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "underripe",
+    "label_en": "Under-ripe",
+    "label_ko": "미숙"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peapod",
+    "label_en": "Peapod",
+    "label_ko": "완두콩꼬투리"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "fresh",
+    "label_en": "Fresh",
+    "label_ko": "신선함"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dark_green",
+    "label_en": "Dark Green",
+    "label_ko": "짙은초록"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "vegetative",
+    "label_en": "Vegetative",
+    "label_ko": "식물성"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "hay_like",
+    "label_en": "Hay-like",
+    "label_ko": "건초향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "herb_like",
+    "label_en": "Herb-like",
+    "label_ko": "허브향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "beany",
+    "label_en": "Beany",
+    "label_ko": "콩비린향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "olive_oil",
+    "label_en": "Olive Oil",
+    "label_ko": "올리브오일"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "stale",
+    "label_en": "Stale",
+    "label_ko": "묵은향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "cardboard",
+    "label_en": "Cardboard",
+    "label_ko": "골판지"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "papery",
+    "label_en": "Papery",
+    "label_ko": "종이향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "moldy",
+    "label_en": "Moldy",
+    "label_ko": "곰팡이"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "damp",
+    "label_en": "Damp",
+    "label_ko": "습한향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "musty",
+    "label_en": "Musty",
+    "label_ko": "퀴퀴함"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "dusty",
+    "label_en": "Dusty",
+    "label_ko": "먼지향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "musty_earthy",
+    "label_en": "Musty / Earthy",
+    "label_ko": "퀴퀴한흙향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "animalic",
+    "label_en": "Animalic",
+    "label_ko": "동물취"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "phenolic",
+    "label_en": "Phenolic",
+    "label_ko": "페놀향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "bitter",
+    "label_en": "Bitter",
+    "label_ko": "쓴맛"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "salty",
+    "label_en": "Salty",
+    "label_ko": "짠맛"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "medicinal",
+    "label_en": "Medicinal",
+    "label_ko": "약품향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "petroleum",
+    "label_en": "Petroleum",
+    "label_ko": "석유향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "skunky",
+    "label_en": "Skunky",
+    "label_ko": "스컹크향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "rubber",
+    "label_en": "Rubber",
+    "label_ko": "고무향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "acrid",
+    "label_en": "Acrid",
+    "label_ko": "자극취"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "ashy",
+    "label_en": "Ashy",
+    "label_ko": "재향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "brown_roast",
+    "label_en": "Brown, Roast",
+    "label_ko": "브라운로스트"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "burnt",
+    "label_en": "Burnt",
+    "label_ko": "탄향"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "grain",
+    "label_en": "Grain",
+    "label_ko": "곡물"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "pipe_tobacco",
+    "label_en": "Pipe Tobacco",
+    "label_ko": "파이프담배"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "peanuts",
+    "label_en": "Peanuts",
+    "label_ko": "땅콩"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "caramelized",
+    "label_en": "Caramelized",
+    "label_ko": "캐러멜라이즈드"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "vanillin",
+    "label_en": "Vanillin",
+    "label_ko": "바닐린"
+  },
+  {
+    "domain": "flavor_note",
     "key": "stone_fruit",
     "label_en": "Stone Fruit",
     "label_ko": "핵과류"

@@ -107,7 +107,7 @@ def test_normalize_realworld_colombia_label_values():
 
 
 def test_flavor_note_strict_blocks_semantic_alias():
-    bean = BeanInfo(flavor_notes=["청포도"])
+    bean = BeanInfo(flavor_notes=["citrusy"])
 
     result = normalize_bean_info(bean)
 
@@ -118,9 +118,9 @@ def test_flavor_note_strict_blocks_semantic_alias():
 def test_flavor_note_legacy_allows_semantic_alias():
     engine = NormalizationEngine(config=NormalizationConfig(flavor_note_mode="legacy"))
 
-    item = engine.normalize_one("flavor_note", "청포도")
+    item = engine.normalize_one("flavor_note", "citrusy")
 
-    assert item.normalized_key == "grape"
+    assert item.normalized_key == "citrus"
     assert item.method == "alias"
 
 
