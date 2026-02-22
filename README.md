@@ -98,6 +98,9 @@ This repository can be deployed as a Python API on Vercel.
 ### Endpoints
 
 - `GET /health`: health check
+- `GET /dictionary/latest`: latest dictionary version pointer
+- `GET /dictionary/{version}/options`: dictionary terms for UI options
+  - Optional query: `domain` (`process`, `roast_level`, `country`, `variety`, `flavor_note`)
 - `POST /extract`: supports both
   - `multipart/form-data` (`image` file field)
   - `application/json` (`imageBase64` string, raw base64 or Data URL)
@@ -173,6 +176,14 @@ uvicorn api.index:app --reload --port 8000
 
 ```bash
 curl http://localhost:8000/health
+```
+
+```bash
+curl "http://localhost:8000/dictionary/latest"
+```
+
+```bash
+curl "http://localhost:8000/dictionary/v1/options?domain=country"
 ```
 
 ```bash

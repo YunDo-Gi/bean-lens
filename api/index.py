@@ -1,11 +1,12 @@
 import base64
+from functools import lru_cache
 from io import BytesIO
 import logging
 import os
 from pathlib import Path
 import sys
 
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, HTTPException, Query, Request, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, UnidentifiedImageError
 from pydantic import BaseModel
@@ -20,11 +21,13 @@ if str(SRC) not in sys.path:
 from bean_lens import normalize_bean_info  # noqa: E402
 from bean_lens.core import extract_with_metadata  # noqa: E402
 from bean_lens.exceptions import AuthenticationError, ImageError, RateLimitError  # noqa: E402
+from bean_lens.normalization.repository import DictionaryRepository  # noqa: E402
 from bean_lens.normalization.types import NormalizedBeanInfo  # noqa: E402
 
 app = FastAPI(title="bean-lens API", version="1.0.0")
 logger = logging.getLogger(__name__)
 EXTRACTION_LOGGER = ExtractionLogger(ExtractionLoggingConfig.from_env())
+VALID_DICTIONARY_DOMAINS = ("process", "roast_level", "country", "variety", "flavor_note")
 
 raw_origins = os.getenv("FRONTEND_ORIGINS", "*")
 allow_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
@@ -85,6 +88,41 @@ class ExtractResponse(BaseModel):
     metadata: ExtractMetadata
 
 
+class DictionaryOption(BaseModel):
+    domain: str
+    key: str
+    label_en: str
+    label_ko: str
+
+
+class DictionaryOptionsResponse(BaseModel):
+    version: str
+    domain: str | None = None
+    total: int
+    options: list[DictionaryOption]
+
+
+class DictionaryLatestResponse(BaseModel):
+    latest: str
+    options_url: str
+
+
+@lru_cache(maxsize=8)
+def _load_dictionary_options(version: str) -> list[DictionaryOption]:
+    repo = DictionaryRepository(version=version)
+    options = [
+        DictionaryOption(
+            domain=term.domain,
+            key=term.key,
+            label_en=term.label_en,
+            label_ko=term.label_ko,
+        )
+        for term in repo.terms
+    ]
+    options.sort(key=lambda item: (item.domain, item.label_en.lower(), item.key))
+    return options
+
+
 def _validate_payload_size(payload: bytes) -> None:
     if len(payload) > MAX_IMAGE_BYTES:
         raise HTTPException(status_code=413, detail="image too large")
@@ -119,6 +157,41 @@ def _decode_base64_image(image_base64: str) -> bytes:
     _validate_payload_size(payload)
 
     return payload
+
+
+@app.get("/dictionary/latest", response_model=DictionaryLatestResponse)
+def dictionary_latest(response: Response) -> DictionaryLatestResponse:
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return DictionaryLatestResponse(
+        latest=DICTIONARY_VERSION,
+        options_url=f"/dictionary/{DICTIONARY_VERSION}/options",
+    )
+
+
+@app.get("/dictionary/{version}/options", response_model=DictionaryOptionsResponse)
+def dictionary_options(
+    version: str,
+    response: Response,
+    domain: str | None = Query(default=None),
+) -> DictionaryOptionsResponse:
+    if domain and domain not in VALID_DICTIONARY_DOMAINS:
+        raise HTTPException(status_code=400, detail=f"invalid domain: {domain}")
+
+    try:
+        options = _load_dictionary_options(version)
+    except Exception as exc:
+        raise HTTPException(status_code=404, detail=f"dictionary version not found: {version}") from exc
+
+    if domain:
+        options = [item for item in options if item.domain == domain]
+
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    return DictionaryOptionsResponse(
+        version=version,
+        domain=domain,
+        total=len(options),
+        options=options,
+    )
 
 
 @app.post("/extract", response_model=ExtractResponse)
