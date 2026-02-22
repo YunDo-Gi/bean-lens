@@ -1,0 +1,110 @@
+name: Dictionary Term Apply
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Lookback window in days"
+        required: false
+        default: "30"
+      approved_file:
+        description: "Approved term file path"
+        required: false
+        default: "data/review/approved_term_candidates.json"
+      allow_flavor_note:
+        description: "Allow flavor_note term additions"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  propose-term-update:
+    runs-on: ubuntu-latest
+    env:
+      DAYS: ${{ github.event.inputs.days || '30' }}
+      APPROVED_FILE: ${{ github.event.inputs.approved_file || 'data/review/approved_term_candidates.json' }}
+      DATABASE_URL: ${{ secrets.UNKNOWN_QUEUE_DATABASE_URL }}
+      ALLOW_FLAVOR_NOTE: ${{ github.event.inputs.allow_flavor_note == 'true' && '1' || '0' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]' psycopg[binary]
+
+      - name: Validate required inputs
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "UNKNOWN_QUEUE_DATABASE_URL secret is missing"
+            exit 1
+          fi
+          if [ ! -f "$APPROVED_FILE" ]; then
+            echo "Approved file not found: $APPROVED_FILE"
+            exit 1
+          fi
+
+      - name: Generate latest term candidates
+        run: |
+          python scripts/generate_new_term_candidates.py \
+            --database-url "$DATABASE_URL" \
+            --days "$DAYS" \
+            --dictionary-version v1 \
+            --output data/review/new_term_candidates.auto.json \
+            --min-count 3 \
+            --max-best-score 0.87 \
+            --top 500
+
+      - name: Apply approved term candidates
+        run: |
+          if [ "$ALLOW_FLAVOR_NOTE" = "1" ]; then
+            EXTRA="--allow-flavor-note"
+          else
+            EXTRA=""
+          fi
+          python scripts/apply_term_candidates.py \
+            --candidates data/review/new_term_candidates.auto.json \
+            --approved "$APPROVED_FILE" \
+            --dictionary-version v1 \
+            $EXTRA
+
+      - name: Validate dictionary and tests
+        run: |
+          python scripts/validate_dictionary_data.py
+          pytest -q tests/normalization/test_engine.py
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(dictionary): apply approved term candidates"
+          title: "chore(dictionary): apply approved term candidates"
+          body: |
+            This PR applies approved term candidates from:
+            `${{ github.event.inputs.approved_file || 'data/review/approved_term_candidates.json' }}`
+
+            Included:
+            - Latest generated `data/review/new_term_candidates.auto.json`
+            - Updated dictionary term/alias files
+          branch: chore/dictionary-term-apply
+          delete-branch: true
+          labels: |
+            automation
+            dictionary
+            term-update
+          add-paths: |
+            data/review/new_term_candidates.auto.json
+            src/bean_lens/normalization/data/v1/terms.py
+            src/bean_lens/normalization/data/v1/terms.json
+            src/bean_lens/normalization/data/v1/aliases.py
+            src/bean_lens/normalization/data/v1/aliases.json

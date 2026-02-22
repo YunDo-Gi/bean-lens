@@ -305,6 +305,17 @@ python scripts/generate_new_term_candidates.py \
   --max-best-score 0.87
 ```
 
+To apply approved term candidates:
+
+```bash
+python scripts/apply_term_candidates.py \
+  --candidates data/review/new_term_candidates.auto.json \
+  --approved data/review/approved_term_candidates.json \
+  --dictionary-version v1
+```
+
+Approved file example: `data/review/approved_term_candidates.example.json`
+
 ### Weekly auto-PR (approval workflow)
 
 This repository includes a weekly GitHub Actions workflow:
@@ -322,6 +333,11 @@ Required repository secret:
 ```bash
 UNKNOWN_QUEUE_DATABASE_URL=postgresql://<user>:<password>@<host>:<port>/<db>?sslmode=require
 ```
+
+Manual approved-term workflow:
+- `.github/workflows/dictionary-term-apply.yml`
+- Trigger with `workflow_dispatch` after preparing
+  `data/review/approved_term_candidates.json`.
 
 ### Webhook receiver (DB sink)
 

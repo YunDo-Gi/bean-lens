@@ -1,0 +1,12 @@
+[
+  {
+    "domain": "process",
+    "raw": "Extended Fermentation",
+    "key": "extended_fermentation",
+    "label_en": "Extended Fermentation",
+    "label_ko": "장시간 발효",
+    "aliases": [
+      "extended fermentation process"
+    ]
+  }
+]
