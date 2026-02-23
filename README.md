@@ -106,8 +106,13 @@ This repository can be deployed as a Python API on Vercel.
   - `multipart/form-data` (`image` file field)
   - `application/json` (`imageBase64` string, raw base64 or Data URL)
   - response:
-    - `normalized`: `NormalizedBeanInfo`
+    - `extracted.beanName`: extracted bean name (nullable)
+    - `extracted.roastery`: extracted roastery/brand (nullable)
+    - `extracted.altitudeRaw`: extracted altitude text (nullable)
+    - `normalized.countryKey|roastLevelKey|processMethodKey|flavorNoteKeys`
+    - `normalized.altitudeMinM|altitudeMaxM|altitudeM` (numeric altitude summary; single value => min=max=value)
     - `metadata.parser`: extraction parser path (`gemini_vision`, `ocr_text_llm`, `heuristic_fallback`, `ocr_heuristic`)
+    - `warnings`: normalization warning list
 
 ### Local API run
 

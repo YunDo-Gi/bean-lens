@@ -11,7 +11,7 @@ import sys
 from fastapi import FastAPI, File, HTTPException, Query, Request, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, UnidentifiedImageError
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from api.extraction_logging import ExtractionLogger, ExtractionLoggingConfig
 
 # Ensure local src package is importable in serverless runtime.
@@ -24,7 +24,6 @@ from bean_lens import normalize_bean_info  # noqa: E402
 from bean_lens.core import extract_with_metadata  # noqa: E402
 from bean_lens.exceptions import AuthenticationError, ImageError, RateLimitError  # noqa: E402
 from bean_lens.normalization.repository import DictionaryRepository  # noqa: E402
-from bean_lens.normalization.types import NormalizedBeanInfo  # noqa: E402
 
 app = FastAPI(title="bean-lens API", version="1.0.0")
 logger = logging.getLogger(__name__)
@@ -86,9 +85,27 @@ class ExtractMetadata(BaseModel):
     parser: str | None = None
 
 
+class ExtractedResponse(BaseModel):
+    beanName: str | None = None
+    roastery: str | None = None
+    altitudeRaw: str | None = None
+
+
+class ExtractNormalizedResponse(BaseModel):
+    countryKey: str | None = None
+    roastLevelKey: str | None = None
+    processMethodKey: str | None = None
+    flavorNoteKeys: list[str] = Field(default_factory=list)
+    altitudeMinM: int | None = None
+    altitudeMaxM: int | None = None
+    altitudeM: int | None = None
+
+
 class ExtractResponse(BaseModel):
-    normalized: NormalizedBeanInfo
+    extracted: ExtractedResponse
+    normalized: ExtractNormalizedResponse
     metadata: ExtractMetadata
+    warnings: list[str] = Field(default_factory=list)
 
 
 class DictionaryOption(BaseModel):
@@ -208,6 +225,32 @@ def _decode_base64_image(image_base64: str) -> bytes:
     return payload
 
 
+def _parse_altitude_metrics(raw: str | None) -> tuple[int | None, int | None, int | None]:
+    if not raw:
+        return None, None, None
+
+    matches = re.findall(r"\d[\d,]*(?:\.\d+)?", raw)
+    values: list[int] = []
+    for match in matches:
+        try:
+            value = round(float(match.replace(",", "")))
+        except ValueError:
+            continue
+        if value > 0:
+            values.append(int(value))
+
+    if not values:
+        return None, None, None
+
+    if len(values) == 1:
+        return values[0], values[0], values[0]
+
+    altitude_min = min(values)
+    altitude_max = max(values)
+    altitude_mid = int(round((altitude_min + altitude_max) / 2))
+    return altitude_min, altitude_max, altitude_mid
+
+
 @app.get("/dictionary/latest", response_model=DictionaryLatestResponse)
 def dictionary_latest(response: Response) -> DictionaryLatestResponse:
     response.headers["Cache-Control"] = "public, max-age=60"
@@ -298,12 +341,27 @@ async def extract_bean_info(request: Request, image: UploadFile | None = File(de
             extraction_metadata=extraction_metadata,
             warnings=normalized.warnings,
         )
+        altitude_min_m, altitude_max_m, altitude_m = _parse_altitude_metrics(extracted.altitude)
         return ExtractResponse(
-            normalized=normalized,
+            extracted=ExtractedResponse(
+                beanName=extracted.name,
+                roastery=extracted.roastery,
+                altitudeRaw=extracted.altitude,
+            ),
+            normalized=ExtractNormalizedResponse(
+                countryKey=normalized.country.normalized_key if normalized.country else None,
+                roastLevelKey=normalized.roast_level.normalized_key if normalized.roast_level else None,
+                processMethodKey=normalized.process.normalized_key if normalized.process else None,
+                flavorNoteKeys=[item.normalized_key for item in normalized.flavor_notes if item.normalized_key],
+                altitudeMinM=altitude_min_m,
+                altitudeMaxM=altitude_max_m,
+                altitudeM=altitude_m,
+            ),
             metadata=ExtractMetadata(
                 provider=extraction_metadata.get("provider"),
                 parser=extraction_metadata.get("parser"),
             ),
+            warnings=normalized.warnings,
         )
     except UnidentifiedImageError as exc:
         raise HTTPException(status_code=400, detail="invalid image format") from exc
