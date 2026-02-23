@@ -2,16 +2,30 @@
   {
     "domain": "process",
     "key": "washed",
-    "alias": "fully washed",
+    "alias": "washed",
+    "match_type": "contains",
+    "priority": 40
+  },
+  {
+    "domain": "process",
+    "key": "washed",
+    "alias": "워시드",
     "match_type": "exact",
     "priority": 10
   },
   {
     "domain": "process",
     "key": "washed",
-    "alias": "washed",
+    "alias": "wet",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "process",
+    "key": "washed",
+    "alias": "wet process",
     "match_type": "contains",
-    "priority": 40
+    "priority": 20
   },
   {
     "domain": "process",
@@ -29,13 +43,6 @@
   },
   {
     "domain": "process",
-    "key": "washed",
-    "alias": "워시드",
-    "match_type": "exact",
-    "priority": 10
-  },
-  {
-    "domain": "process",
     "key": "natural",
     "alias": "내추럴",
     "match_type": "exact",
@@ -43,10 +50,171 @@
   },
   {
     "domain": "process",
-    "key": "honey",
-    "alias": "black honey",
+    "key": "natural",
+    "alias": "dry",
+    "match_type": "exact",
+    "priority": 20
+  },
+  {
+    "domain": "process",
+    "key": "natural",
+    "alias": "dry process",
     "match_type": "contains",
     "priority": 20
+  },
+  {
+    "domain": "process",
+    "key": "honey",
+    "alias": "허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "honey",
+    "alias": "honey process",
+    "match_type": "contains",
+    "priority": 20
+  },
+  {
+    "domain": "process",
+    "key": "wet_hulled",
+    "alias": "giling basah",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "wet_hulled",
+    "alias": "웨트 헐",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "wet_hulled",
+    "alias": "습식 박피",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "pulped_natural",
+    "alias": "pulped natural",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "pulped_natural",
+    "alias": "펄프드 내추럴",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "semi_washed",
+    "alias": "semi washed",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "semi_washed",
+    "alias": "semi wet",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "semi_washed",
+    "alias": "세미 워시드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "fully_washed",
+    "alias": "fully washed",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "fully_washed",
+    "alias": "full washed",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "process",
+    "key": "fully_washed",
+    "alias": "풀 워시드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "dry_hull",
+    "alias": "dry hull",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "dry_hull",
+    "alias": "dry hulled",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "dry_hull",
+    "alias": "드라이 헐",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "aquapulp",
+    "alias": "aqua pulp",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "aquapulp",
+    "alias": "아쿠아펄프",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "double_washed",
+    "alias": "double washed",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "double_washed",
+    "alias": "double soaked",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "double_washed",
+    "alias": "더블 워시드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "double_washed",
+    "alias": "더블 소크드",
+    "match_type": "exact",
+    "priority": 10
   },
   {
     "domain": "process",
@@ -57,6 +225,27 @@
   },
   {
     "domain": "process",
+    "key": "anaerobic",
+    "alias": "anaerobic fermentation",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "anaerobic",
+    "alias": "무산소 발효",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "anaerobic",
+    "alias": "혐기",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "process",
     "key": "carbonic_maceration",
     "alias": "carbonic maceration",
     "match_type": "exact",
@@ -64,8 +253,407 @@
   },
   {
     "domain": "process",
-    "key": "wet_hulled",
-    "alias": "giling basah",
+    "key": "carbonic_maceration",
+    "alias": "카보닉 메세레이션",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "carbonic_maceration",
+    "alias": "카보닉 메서레이션",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "carbonic_maceration",
+    "alias": "탄산침용",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "yeast_fermentation",
+    "alias": "yeast fermentation",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "yeast_fermentation",
+    "alias": "이스트 발효",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "extended_natural",
+    "alias": "extended natural",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "extended_natural",
+    "alias": "익스텐디드 내추럴",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "extended_honey",
+    "alias": "extended honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "extended_honey",
+    "alias": "익스텐디드 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "raisin_honey",
+    "alias": "raisin honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "raisin_honey",
+    "alias": "레이즌 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "winey_process",
+    "alias": "winey process",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "winey_process",
+    "alias": "wine process",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "winey_process",
+    "alias": "와인 프로세스",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "hydro_honey",
+    "alias": "hydro honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "hydro_honey",
+    "alias": "하이드로 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "soft_wash",
+    "alias": "soft wash",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "soft_wash",
+    "alias": "소프트 워시",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "dark_room",
+    "alias": "dark room",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "dark_room",
+    "alias": "darkroom",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "dark_room",
+    "alias": "다크룸",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "monsooned",
+    "alias": "monsooned",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "monsooned",
+    "alias": "몬순드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "hybrid_washed",
+    "alias": "hybrid washed",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "hybrid_washed",
+    "alias": "하이브리드 워시드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "infused",
+    "alias": "infused",
+    "match_type": "contains",
+    "priority": 25
+  },
+  {
+    "domain": "process",
+    "key": "infused",
+    "alias": "인퓨즈드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "roasted_infused",
+    "alias": "roasted infused",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "roasted_infused",
+    "alias": "roasting infused",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "roasted_infused",
+    "alias": "로스팅 인퓨즈드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "thermal_shock",
+    "alias": "thermal shock",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "thermal_shock",
+    "alias": "써멀 쇼크",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "thermal_shock",
+    "alias": "테라믹 발효",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "pressure_fermentation",
+    "alias": "pressure fermentation",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "pressure_fermentation",
+    "alias": "압력 발효",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "ice_fermentation",
+    "alias": "ice fermentation",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "ice_fermentation",
+    "alias": "얼음 발효",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "bruised_honey",
+    "alias": "bruised honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "bruised_honey",
+    "alias": "브루이즈드 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "bruised_honey",
+    "alias": "브러리드 허니",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "white_honey",
+    "alias": "white honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "white_honey",
+    "alias": "화이트 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "yellow_honey",
+    "alias": "yellow honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "yellow_honey",
+    "alias": "옐로우 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "red_honey",
+    "alias": "red honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "red_honey",
+    "alias": "레드 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "black_honey",
+    "alias": "black honey",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "black_honey",
+    "alias": "블랙 허니",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "double_pulped",
+    "alias": "double pulped",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "double_pulped",
+    "alias": "더블 펄프드",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "sun_dried_natural",
+    "alias": "sun dried natural",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "sun_dried_natural",
+    "alias": "선드라이드 내추럴",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "sun_dried_natural",
+    "alias": "수닌",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "process",
+    "key": "mechanically_dried",
+    "alias": "mechanically dried",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "mechanically_dried",
+    "alias": "mechanical dry",
+    "match_type": "exact",
+    "priority": 12
+  },
+  {
+    "domain": "process",
+    "key": "mechanically_dried",
+    "alias": "메카니컬 드라이",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "parchment_natural",
+    "alias": "parchment natural",
+    "match_type": "exact",
+    "priority": 10
+  },
+  {
+    "domain": "process",
+    "key": "parchment_natural",
+    "alias": "파치먼트 내추럴",
     "match_type": "exact",
     "priority": 10
   },
@@ -346,6 +934,13 @@
     "domain": "country",
     "key": "SV",
     "alias": "엘 살바도르",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "RW",
+    "alias": "루완다",
     "match_type": "exact",
     "priority": 15
   },

@@ -19,21 +19,201 @@
   },
   {
     "domain": "process",
-    "key": "anaerobic",
-    "label_en": "Anaerobic",
-    "label_ko": "혐기"
+    "key": "wet_hulled",
+    "label_en": "Wet Hulled",
+    "label_ko": "웨트 헐"
   },
   {
     "domain": "process",
-    "key": "wet_hulled",
-    "label_en": "Wet Hulled",
-    "label_ko": "습식 박피"
+    "key": "pulped_natural",
+    "label_en": "Pulped Natural",
+    "label_ko": "펄프드 내추럴"
+  },
+  {
+    "domain": "process",
+    "key": "semi_washed",
+    "label_en": "Semi Washed",
+    "label_ko": "세미 워시드"
+  },
+  {
+    "domain": "process",
+    "key": "fully_washed",
+    "label_en": "Fully Washed",
+    "label_ko": "풀 워시드"
+  },
+  {
+    "domain": "process",
+    "key": "dry_hull",
+    "label_en": "Dry Hull",
+    "label_ko": "드라이 헐"
+  },
+  {
+    "domain": "process",
+    "key": "aquapulp",
+    "label_en": "Aquapulp",
+    "label_ko": "아쿠아펄프"
+  },
+  {
+    "domain": "process",
+    "key": "double_washed",
+    "label_en": "Double Washed",
+    "label_ko": "더블 워시드"
+  },
+  {
+    "domain": "process",
+    "key": "anaerobic",
+    "label_en": "Anaerobic Fermentation",
+    "label_ko": "무산소 발효"
   },
   {
     "domain": "process",
     "key": "carbonic_maceration",
     "label_en": "Carbonic Maceration",
-    "label_ko": "탄산침용"
+    "label_ko": "카보닉 메서레이션"
+  },
+  {
+    "domain": "process",
+    "key": "yeast_fermentation",
+    "label_en": "Yeast Fermentation",
+    "label_ko": "이스트 발효"
+  },
+  {
+    "domain": "process",
+    "key": "extended_natural",
+    "label_en": "Extended Natural",
+    "label_ko": "익스텐디드 내추럴"
+  },
+  {
+    "domain": "process",
+    "key": "extended_honey",
+    "label_en": "Extended Honey",
+    "label_ko": "익스텐디드 허니"
+  },
+  {
+    "domain": "process",
+    "key": "raisin_honey",
+    "label_en": "Raisin Honey",
+    "label_ko": "레이즌 허니"
+  },
+  {
+    "domain": "process",
+    "key": "winey_process",
+    "label_en": "Winey Process",
+    "label_ko": "와인 프로세스"
+  },
+  {
+    "domain": "process",
+    "key": "hydro_honey",
+    "label_en": "Hydro Honey",
+    "label_ko": "하이드로 허니"
+  },
+  {
+    "domain": "process",
+    "key": "soft_wash",
+    "label_en": "Soft Wash",
+    "label_ko": "소프트 워시"
+  },
+  {
+    "domain": "process",
+    "key": "dark_room",
+    "label_en": "Dark Room",
+    "label_ko": "다크룸"
+  },
+  {
+    "domain": "process",
+    "key": "monsooned",
+    "label_en": "Monsooned",
+    "label_ko": "몬순드"
+  },
+  {
+    "domain": "process",
+    "key": "hybrid_washed",
+    "label_en": "Hybrid Washed",
+    "label_ko": "하이브리드 워시드"
+  },
+  {
+    "domain": "process",
+    "key": "infused",
+    "label_en": "Infused",
+    "label_ko": "인퓨즈드"
+  },
+  {
+    "domain": "process",
+    "key": "roasted_infused",
+    "label_en": "Roasted Infused",
+    "label_ko": "로스팅 인퓨즈드"
+  },
+  {
+    "domain": "process",
+    "key": "thermal_shock",
+    "label_en": "Thermal Shock",
+    "label_ko": "써멀 쇼크"
+  },
+  {
+    "domain": "process",
+    "key": "pressure_fermentation",
+    "label_en": "Pressure Fermentation",
+    "label_ko": "압력 발효"
+  },
+  {
+    "domain": "process",
+    "key": "ice_fermentation",
+    "label_en": "Ice Fermentation",
+    "label_ko": "얼음 발효"
+  },
+  {
+    "domain": "process",
+    "key": "bruised_honey",
+    "label_en": "Bruised Honey",
+    "label_ko": "브루이즈드 허니"
+  },
+  {
+    "domain": "process",
+    "key": "white_honey",
+    "label_en": "White Honey",
+    "label_ko": "화이트 허니"
+  },
+  {
+    "domain": "process",
+    "key": "yellow_honey",
+    "label_en": "Yellow Honey",
+    "label_ko": "옐로우 허니"
+  },
+  {
+    "domain": "process",
+    "key": "red_honey",
+    "label_en": "Red Honey",
+    "label_ko": "레드 허니"
+  },
+  {
+    "domain": "process",
+    "key": "black_honey",
+    "label_en": "Black Honey",
+    "label_ko": "블랙 허니"
+  },
+  {
+    "domain": "process",
+    "key": "double_pulped",
+    "label_en": "Double Pulped",
+    "label_ko": "더블 펄프드"
+  },
+  {
+    "domain": "process",
+    "key": "sun_dried_natural",
+    "label_en": "Sun-Dried Natural",
+    "label_ko": "선드라이드 내추럴"
+  },
+  {
+    "domain": "process",
+    "key": "mechanically_dried",
+    "label_en": "Mechanically Dried",
+    "label_ko": "메카니컬 드라이"
+  },
+  {
+    "domain": "process",
+    "key": "parchment_natural",
+    "label_en": "Parchment Natural",
+    "label_ko": "파치먼트 내추럴"
   },
   {
     "domain": "roast_level",
@@ -141,7 +321,7 @@
     "domain": "country",
     "key": "RW",
     "label_en": "Rwanda",
-    "label_ko": "루완다"
+    "label_ko": "르완다"
   },
   {
     "domain": "country",

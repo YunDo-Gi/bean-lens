@@ -27,6 +27,24 @@ def test_normalize_process_alias_korean():
     assert result.process.method in {"alias", "exact"}
 
 
+def test_normalize_process_expanded_variants():
+    cases = {
+        "Giling Basah": "wet_hulled",
+        "Fully Washed": "fully_washed",
+        "Double Soaked": "double_washed",
+        "Black Honey": "black_honey",
+        "테라믹 발효": "thermal_shock",
+        "Natural Infused": "infused",
+    }
+
+    for raw, expected in cases.items():
+        bean = BeanInfo(process=raw)
+        result = normalize_bean_info(bean)
+        assert result.process is not None
+        assert result.process.normalized_key == expected
+        assert result.process.method in {"alias", "exact"}
+
+
 def test_normalize_roast_level_alias_city():
     bean = BeanInfo(roast_level="City")
 
