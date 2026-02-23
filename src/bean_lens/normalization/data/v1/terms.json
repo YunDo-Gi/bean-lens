@@ -79,9 +79,9 @@
   },
   {
     "domain": "country",
-    "key": "BR",
-    "label_en": "Brazil",
-    "label_ko": "브라질"
+    "key": "KE",
+    "label_en": "Kenya",
+    "label_ko": "케냐"
   },
   {
     "domain": "country",
@@ -97,21 +97,99 @@
   },
   {
     "domain": "country",
-    "key": "KE",
-    "label_en": "Kenya",
-    "label_ko": "케냐"
-  },
-  {
-    "domain": "country",
     "key": "HN",
     "label_en": "Honduras",
     "label_ko": "온두라스"
   },
   {
     "domain": "country",
+    "key": "PE",
+    "label_en": "Peru",
+    "label_ko": "페루"
+  },
+  {
+    "domain": "country",
     "key": "ID",
     "label_en": "Indonesia",
     "label_ko": "인도네시아"
+  },
+  {
+    "domain": "country",
+    "key": "PA",
+    "label_en": "Panama",
+    "label_ko": "파나마"
+  },
+  {
+    "domain": "country",
+    "key": "SV",
+    "label_en": "El Salvador",
+    "label_ko": "엘살바도르"
+  },
+  {
+    "domain": "country",
+    "key": "BR",
+    "label_en": "Brazil",
+    "label_ko": "브라질"
+  },
+  {
+    "domain": "country",
+    "key": "NI",
+    "label_en": "Nicaragua",
+    "label_ko": "니카라과"
+  },
+  {
+    "domain": "country",
+    "key": "RW",
+    "label_en": "Rwanda",
+    "label_ko": "루완다"
+  },
+  {
+    "domain": "country",
+    "key": "BI",
+    "label_en": "Burundi",
+    "label_ko": "부룬디"
+  },
+  {
+    "domain": "country",
+    "key": "TZ",
+    "label_en": "Tanzania",
+    "label_ko": "탄자니아"
+  },
+  {
+    "domain": "country",
+    "key": "UG",
+    "label_en": "Uganda",
+    "label_ko": "우간다"
+  },
+  {
+    "domain": "country",
+    "key": "YE",
+    "label_en": "Yemen",
+    "label_ko": "예멘"
+  },
+  {
+    "domain": "country",
+    "key": "IN",
+    "label_en": "India",
+    "label_ko": "인도"
+  },
+  {
+    "domain": "country",
+    "key": "CN",
+    "label_en": "China",
+    "label_ko": "중국"
+  },
+  {
+    "domain": "country",
+    "key": "MX",
+    "label_en": "Mexico",
+    "label_ko": "멕시코"
+  },
+  {
+    "domain": "country",
+    "key": "KR",
+    "label_en": "Korea",
+    "label_ko": "한국"
   },
   {
     "domain": "variety",
@@ -1006,12 +1084,6 @@
     "key": "cedar",
     "label_en": "Cedar",
     "label_ko": "시더"
-  },
-  {
-    "domain": "flavor_note",
-    "key": "wood",
-    "label_en": "Wood",
-    "label_ko": "나무"
   },
   {
     "domain": "flavor_note",

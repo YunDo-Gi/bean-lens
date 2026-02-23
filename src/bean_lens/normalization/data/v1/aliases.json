@@ -288,10 +288,24 @@
   },
   {
     "domain": "country",
+    "key": "ET",
+    "alias": "ethiopian",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
     "key": "CO",
     "alias": "colombia",
     "match_type": "exact",
     "priority": 10
+  },
+  {
+    "domain": "country",
+    "key": "CO",
+    "alias": "columbia",
+    "match_type": "exact",
+    "priority": 15
   },
   {
     "domain": "country",
@@ -306,6 +320,97 @@
     "alias": "costa rica",
     "match_type": "exact",
     "priority": 10
+  },
+  {
+    "domain": "country",
+    "key": "CR",
+    "alias": "costarica",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "CR",
+    "alias": "코스타 리카",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "SV",
+    "alias": "elsalvador",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "SV",
+    "alias": "엘 살바도르",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "CN",
+    "alias": "yunnan china",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "CN",
+    "alias": "yunnan",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "CN",
+    "alias": "운남",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "CN",
+    "alias": "윈난",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "KR",
+    "alias": "south korea",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "KR",
+    "alias": "republic of korea",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "KR",
+    "alias": "korea republic",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "KR",
+    "alias": "대한민국",
+    "match_type": "exact",
+    "priority": 15
+  },
+  {
+    "domain": "country",
+    "key": "KR",
+    "alias": "남한",
+    "match_type": "exact",
+    "priority": 15
   },
   {
     "domain": "variety",
@@ -346,6 +451,14 @@
     "domain": "flavor_note",
     "key": "jasmine",
     "alias": "jasmin",
+    "match_type": "exact",
+    "priority": 10,
+    "alias_kind": "typo"
+  },
+  {
+    "domain": "flavor_note",
+    "key": "woody",
+    "alias": "wood",
     "match_type": "exact",
     "priority": 10,
     "alias_kind": "typo"

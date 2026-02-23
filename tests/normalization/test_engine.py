@@ -66,6 +66,24 @@ def test_normalize_country_korean_name():
     assert result.country.normalized_key == "ET"
 
 
+def test_normalize_country_alias_variants():
+    cases = {
+        "대한민국": "KR",
+        "South Korea": "KR",
+        "Yunnan China": "CN",
+        "운남": "CN",
+        "costarica": "CR",
+        "엘 살바도르": "SV",
+    }
+
+    for raw, expected in cases.items():
+        bean = BeanInfo(origin=Origin(country=raw))
+        result = normalize_bean_info(bean)
+        assert result.country is not None
+        assert result.country.normalized_key == expected
+        assert result.country.method in {"alias", "exact"}
+
+
 def test_normalize_variety_dedupes_by_normalized_key():
     bean = BeanInfo(variety=["Geisha", "Gesha"])
 
