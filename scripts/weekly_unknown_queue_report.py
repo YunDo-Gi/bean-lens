@@ -50,7 +50,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--database-url", help="PostgreSQL DATABASE_URL for receiver DB")
     parser.add_argument("--days", type=int, default=7, help="Lookback window in days (default: 7)")
     parser.add_argument("--top", type=int, default=20, help="Top raw values per domain (default: 20)")
-    parser.add_argument("--dictionary-version", default="v1", help="Dictionary version (default: v1)")
+    parser.add_argument("--dictionary-version", default="v2", help="Dictionary version (default: v2)")
     parser.add_argument(
         "--format",
         choices=("markdown", "json"),

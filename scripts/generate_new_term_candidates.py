@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", help="Path to unknown queue JSONL")
     parser.add_argument("--database-url", help="PostgreSQL DATABASE_URL for receiver DB")
     parser.add_argument("--days", type=int, default=7, help="Lookback window in days (default: 7)")
-    parser.add_argument("--dictionary-version", default="v1", help="Dictionary version (default: v1)")
+    parser.add_argument("--dictionary-version", default="v2", help="Dictionary version (default: v2)")
     parser.add_argument("--min-count", type=int, default=3, help="Minimum count to include (default: 3)")
     parser.add_argument(
         "--max-best-score",

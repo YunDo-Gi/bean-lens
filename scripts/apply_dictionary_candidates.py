@@ -8,7 +8,7 @@ This script intentionally applies only conservative alias updates:
 Example:
   python scripts/apply_dictionary_candidates.py \
     --input data/review/alias_candidates.auto.json \
-    --dictionary-version v1 \
+    --dictionary-version v2 \
     --min-count 3 \
     --min-score 0.9
 """
@@ -30,7 +30,7 @@ VALID_DOMAINS = {"process", "variety", "roast_level", "country", "flavor_note"}
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Apply safe dictionary alias candidates")
     parser.add_argument("--input", required=True, help="Candidate JSON file")
-    parser.add_argument("--dictionary-version", default="v1", help="Dictionary version (default: v1)")
+    parser.add_argument("--dictionary-version", default="v2", help="Dictionary version (default: v2)")
     parser.add_argument("--min-count", type=int, default=3, help="Minimum count to apply (default: 3)")
     parser.add_argument("--min-score", type=float, default=0.9, help="Minimum similarity score (default: 0.9)")
     parser.add_argument(
@@ -166,8 +166,18 @@ def main() -> int:
             )
         )
 
-        write_python_list(terms_py, "TERMS", terms, "Canonical dictionary terms for normalization v1.")
-        write_python_list(aliases_py, "ALIASES", aliases, "Alias dictionary for normalization v1.")
+        write_python_list(
+            terms_py,
+            "TERMS",
+            terms,
+            f"Canonical dictionary terms for normalization {args.dictionary_version}.",
+        )
+        write_python_list(
+            aliases_py,
+            "ALIASES",
+            aliases,
+            f"Alias dictionary for normalization {args.dictionary_version}.",
+        )
         terms_json.write_text(json.dumps(terms, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         aliases_json.write_text(json.dumps(aliases, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

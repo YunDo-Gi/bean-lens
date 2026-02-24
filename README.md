@@ -77,7 +77,7 @@ JSON output:
 bean-lens image.jpg --json
 ```
 
-### Normalization (v1)
+### Normalization (v2)
 
 You can normalize extracted fields into canonical dictionary keys:
 
@@ -85,7 +85,7 @@ You can normalize extracted fields into canonical dictionary keys:
 from bean_lens import extract, normalize_bean_info
 
 bean = extract("coffee_package.jpg")
-normalized = normalize_bean_info(bean, dictionary_version="v1")
+normalized = normalize_bean_info(bean, dictionary_version="v2")
 
 print(normalized.process.normalized_key)  # washed
 print(normalized.country.normalized_key)  # ET
@@ -145,7 +145,7 @@ export MAX_IMAGE_BYTES=8388608
 Optional normalization settings:
 
 ```bash
-export DICTIONARY_VERSION=v1
+export DICTIONARY_VERSION=v2
 export FLAVOR_NOTE_MODE=strict
 export FLAVOR_NOTE_FUZZY_THRESHOLD=0.94
 export UNKNOWN_QUEUE_PATH=/tmp/bean-lens-unknown.jsonl
@@ -189,7 +189,7 @@ curl "http://localhost:8000/dictionary/latest"
 ```
 
 ```bash
-curl "http://localhost:8000/dictionary/v1/options?domain=country"
+curl "http://localhost:8000/dictionary/v2/options?domain=country"
 ```
 
 ```bash
@@ -254,8 +254,8 @@ Generated review files are written to `data/imports/beanconqueror/`:
 - `flavor_aliases.json`
 
 Review and selectively merge candidates into
-`src/bean_lens/normalization/data/v1/terms.py` and
-`src/bean_lens/normalization/data/v1/aliases.py`.
+`src/bean_lens/normalization/data/v2/terms.py` and
+`src/bean_lens/normalization/data/v2/aliases.py`.
 
 ### Unknown queue operations
 
@@ -304,7 +304,7 @@ To auto-apply safe alias candidates:
 ```bash
 python scripts/apply_dictionary_candidates.py \
   --input data/review/alias_candidates.auto.json \
-  --dictionary-version v1 \
+  --dictionary-version v2 \
   --min-count 3 \
   --min-score 0.90 \
   --flavor-min-score 0.94
@@ -316,7 +316,7 @@ To generate new term candidates (review-only):
 python scripts/generate_new_term_candidates.py \
   --database-url "$DATABASE_URL" \
   --days 7 \
-  --dictionary-version v1 \
+  --dictionary-version v2 \
   --output data/review/new_term_candidates.auto.json \
   --min-count 3 \
   --max-best-score 0.87
@@ -328,7 +328,7 @@ To apply approved term candidates:
 python scripts/apply_term_candidates.py \
   --candidates data/review/new_term_candidates.auto.json \
   --approved data/review/approved_term_candidates.json \
-  --dictionary-version v1
+  --dictionary-version v2
 ```
 
 Approved file example: `data/review/approved_term_candidates.example.json`

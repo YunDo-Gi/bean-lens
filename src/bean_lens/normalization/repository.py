@@ -31,7 +31,7 @@ class Alias:
 class DictionaryRepository:
     """Loads terms and aliases from packaged dictionary data."""
 
-    def __init__(self, version: str = "v1"):
+    def __init__(self, version: str = "v2"):
         self.version = version
         self.terms: list[Term] = self._load_terms()
         self.aliases: list[Alias] = self._load_aliases()

@@ -29,7 +29,7 @@ class MatchResult:
 
 @dataclass(frozen=True)
 class NormalizationConfig:
-    dictionary_version: str = "v1"
+    dictionary_version: str = "v2"
     fuzzy_threshold: float = 0.86
     flavor_note_mode: str = "strict"
     flavor_note_fuzzy_threshold: float = 0.94
@@ -332,7 +332,7 @@ class NormalizationEngine:
 def normalize_bean_info(
     bean: BeanInfo,
     *,
-    dictionary_version: str = "v1",
+    dictionary_version: str = "v2",
     fuzzy_threshold: float = 0.86,
     flavor_note_mode: str = "strict",
     flavor_note_fuzzy_threshold: float = 0.94,

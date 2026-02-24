@@ -16,7 +16,7 @@ import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-V1_DIR = ROOT / "src" / "bean_lens" / "normalization" / "data" / "v1"
+DATA_ROOT = ROOT / "src" / "bean_lens" / "normalization" / "data"
 
 
 def normalize_text(value: str) -> str:
@@ -84,16 +84,30 @@ def validate_duplicate_aliases(aliases: list[dict]) -> None:
         seen[signature] = key
 
 
-def main() -> int:
-    terms_py = load_python_constant(V1_DIR / "terms.py", "TERMS")
-    terms_json = load_json(V1_DIR / "terms.json")
-    aliases_py = load_python_constant(V1_DIR / "aliases.py", "ALIASES")
-    aliases_json = load_json(V1_DIR / "aliases.json")
+def iter_dictionary_versions() -> list[Path]:
+    versions: list[Path] = []
+    for path in sorted(DATA_ROOT.iterdir()):
+        if not path.is_dir():
+            continue
+        required = ["terms.py", "terms.json", "aliases.py", "aliases.json"]
+        if all((path / name).exists() for name in required):
+            versions.append(path)
+    if not versions:
+        fail(f"No dictionary versions found under {DATA_ROOT}")
+    return versions
 
-    assert_py_json_mirror(terms_py, terms_json, "terms")
-    assert_py_json_mirror(aliases_py, aliases_json, "aliases")
-    validate_alias_references(terms_py, aliases_py)
-    validate_duplicate_aliases(aliases_py)
+
+def main() -> int:
+    for version_dir in iter_dictionary_versions():
+        terms_py = load_python_constant(version_dir / "terms.py", "TERMS")
+        terms_json = load_json(version_dir / "terms.json")
+        aliases_py = load_python_constant(version_dir / "aliases.py", "ALIASES")
+        aliases_json = load_json(version_dir / "aliases.json")
+
+        assert_py_json_mirror(terms_py, terms_json, f"{version_dir.name}/terms")
+        assert_py_json_mirror(aliases_py, aliases_json, f"{version_dir.name}/aliases")
+        validate_alias_references(terms_py, aliases_py)
+        validate_duplicate_aliases(aliases_py)
 
     print("[dictionary-check] OK")
     return 0

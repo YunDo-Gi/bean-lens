@@ -7,7 +7,7 @@ Example:
   python scripts/apply_term_candidates.py \
     --candidates data/review/new_term_candidates.auto.json \
     --approved data/review/approved_term_candidates.json \
-    --dictionary-version v1
+    --dictionary-version v2
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Apply approved term candidates")
     parser.add_argument("--candidates", required=True, help="Path to generated new term candidates JSON")
     parser.add_argument("--approved", required=True, help="Path to approved term list JSON")
-    parser.add_argument("--dictionary-version", default="v1", help="Dictionary version (default: v1)")
+    parser.add_argument("--dictionary-version", default="v2", help="Dictionary version (default: v2)")
     parser.add_argument(
         "--allow-flavor-note",
         action="store_true",
@@ -179,8 +179,18 @@ def main() -> int:
         terms.sort(key=lambda t: (str(t["domain"]), str(t["key"])))
         aliases.sort(key=lambda a: (str(a["domain"]), int(a.get("priority", 100)), normalize_text(str(a["alias"]))))
 
-        write_python_list(terms_py, "TERMS", terms, "Canonical dictionary terms for normalization v1.")
-        write_python_list(aliases_py, "ALIASES", aliases, "Alias dictionary for normalization v1.")
+        write_python_list(
+            terms_py,
+            "TERMS",
+            terms,
+            f"Canonical dictionary terms for normalization {args.dictionary_version}.",
+        )
+        write_python_list(
+            aliases_py,
+            "ALIASES",
+            aliases,
+            f"Alias dictionary for normalization {args.dictionary_version}.",
+        )
         terms_json.write_text(json.dumps(terms, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         aliases_json.write_text(json.dumps(aliases, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
