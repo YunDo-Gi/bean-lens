@@ -1,0 +1,34 @@
+[
+  {
+    "domain": "flavor_note",
+    "raw": "Kyoho Grape",
+    "count": 7,
+    "avg_confidence": 0.0,
+    "latest_ts": null,
+    "top_reason": "no_dictionary_match",
+    "top_method": "unmapped",
+    "already_exists": false,
+    "best_match": {
+      "key": "concord_grape",
+      "label_en": "Concord Grape",
+      "score": 0.6667
+    },
+    "suggested_alias": null
+  },
+  {
+    "domain": "flavor_note",
+    "raw": "White Wine",
+    "count": 7,
+    "avg_confidence": 0.0,
+    "latest_ts": null,
+    "top_reason": "no_dictionary_match",
+    "top_method": "unmapped",
+    "already_exists": false,
+    "best_match": {
+      "key": "white_grape",
+      "label_en": "White Grape",
+      "score": 0.6667
+    },
+    "suggested_alias": null
+  }
+]
